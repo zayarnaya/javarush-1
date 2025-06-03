@@ -33,7 +33,53 @@
         </ul>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <link href="assets/styles/hero.css" rel="stylesheet" type="text/css" />
+      <link href="assets/styles/form-elements.css" rel="stylesheet" type="text/css" />
+      <section class="section-hero">
+        <div class="tickets">
+          <h1>Skip the Climbing, Catch the Bus</h1>
+          <form class="tickets__form">
+            <legend>
+              We sell tickets to the best seats in the house – houses on wheels, that is! Get ready for jaw-dropping
+              views without breaking a sweat.
+            </legend>
+            <fieldset class="tickets__trip-settings">
+              <label class="settings__label" for="round"
+                ><input type="radio" id="round" name="trip-type" value="round" checked />Round trip</label
+              >
+              <label class="settings__label" for="one-way"
+                ><input type="radio" id="one-way" name="trip-type" value="one-way" />One way</label
+              >
+              <div class="number__controls">
+                <button class="trip-settings__btn" disabled>-</button
+                ><input type="number" id="persons" name="persons" value="1" /><button class="trip-settings__btn">
+                  +
+                </button>
+              </div>
+            </fieldset>
+            <fieldset class="tickets__text-inputs">
+              <label class="tickets__label"
+                >Departure<input type="text" id="departure" name="departure" placeholder="Your City/Station"
+              /></label>
+              <label class="tickets__label"
+                >Arrival<input type="text" id="arrival" name="arrival" placeholder="Where to?"
+              /></label>
+              <label class="tickets__label"
+                >Pick your lucky day<input type="date" required id="depart" name="depart" placeholder="Depart" value=""
+              /></label>
+              <label class="tickets__label"
+                >&nbsp;<input type="date" required id="return" name="return" placeholder="Return" value="" disabled
+              /></label>
+            </fieldset>
+            <button type="submit">Find My Alpine Ride</button>
+          </form>
+        </div>
+        <div class="hero">
+          <img src="assets/images/photoes/fullsize/Hero.png" alt="Wonders" class="hero__image" />
+        </div>
+      </section>
+    </main>
     <footer></footer>
   </body>
 </html>

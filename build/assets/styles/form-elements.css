@@ -1,0 +1,94 @@
+fieldset {
+  border: none;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+  width: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  border: none;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 1em 1.5em;
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+button.trip-settings__btn {
+  border: none;
+  background-color: var(--white);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  line-height: 20px;
+  font-size: 14px;
+  color: var(--primary-blue);
+}
+
+button.trip-settings__btn:disabled {
+  color: var(--primary-black-50);
+}
+
+input[type='text'],
+input[type='date'] {
+  border: none;
+  border-radius: 10px;
+  padding: 1em 1.5em;
+  margin: 0;
+  background-color: var(--white);
+  color: var(--primary-black);
+  font-size: 14px;
+  font-weight: 500;
+  /*medium*/
+  line-height: 150%;
+  width: 100%;
+}
+
+input[type='text']::placeholder {
+  color: var(--primary-grey);
+}
+
+input[type='text']:disabled,
+input[type='date']:disabled {
+  background-color: var(--primary-blue-10);
+}
+
+input[type='date']::before {
+  content: attr(placeholder);
+  position: absolute;
+  color: var(--primary-grey);
+}
+
+input[type='date']:required:not(:focus) {
+  color: transparent;
+}
+input[type='date']:required:not(:valid) {
+  color: transparent;
+}
+/* input[type="date"] {
+    color: var(--white);
+  } */
+
+/* input[type="date"]:focus,
+  input[type="date"]:valid {
+    color: var(--primary-black);
+  } */
+
+/* input[type="date"]:focus::before,
+  input[type="date"]:valid::before {
+    content: "";
+  } */
