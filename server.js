@@ -1,17 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const bodyParser = require("body-parser");
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 4078;
-const fs = require("fs");
+const fs = require('fs');
 
-app.use(express.static(path.join(__dirname, "build/static")));
+app.use(express.static(path.join(__dirname, 'build/assets')));
 app.use(cors());
-app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json({ limit: '50mb' }));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "build/index.html"));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build/index.html'));
 });
 
 app.listen(port, () => {
