@@ -23,13 +23,15 @@
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  color: var(--primary-black);
 }
 
 body {
   width: 100vw;
+  min-height: 100vh;
   margin: 0;
-  padding: var(--layout-margin);
-  background: linear-gradient(0% var(--gradient-white), 50% var(--gradient-blue), 100% var(--gradient-white));
+  padding: 0px var(--layout-margin);
+  background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
 }
 
 button {
@@ -62,6 +64,12 @@ input::placeholder {
 
 input:disabled {
   background-color: var(--primary-blue-10);
+}
+
+h1,
+h2 {
+  font-size: 4em;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 768) and (max-width: 1439px) {

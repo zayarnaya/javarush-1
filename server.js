@@ -6,7 +6,7 @@ const app = express();
 const port = 4078;
 const fs = require('fs');
 
-app.use(express.static(path.join(__dirname, 'build/assets')));
+app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 
