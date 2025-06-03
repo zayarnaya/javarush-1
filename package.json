@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages -d build",
     "prepare": "husky",
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "serve": "node --watch server"
   },
   "author": "Veronika Zayarnaya",
   "license": "ISC",

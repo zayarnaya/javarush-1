@@ -16,6 +16,7 @@
   --white: #fff;
 
   --layout-margin: 4em;
+  --layout-margin-neg: -4em;
   --layout-gutter: 2em;
   --layout-col-width: calc(100vw - var(--layout-margin) * 2 - var(--layout-gutter) * 11);
 }
