@@ -1,6 +1,6 @@
 .section-stats {
   justify-content: space-between;
-  padding: 60px var(--layout-margin);
+  padding: 60px var(--layout-margin) !important;
   background-color: var(--primary-blue);
 }
 
