@@ -73,11 +73,20 @@ input[type='date']::before {
   color: var(--primary-grey);
 }
 
+input[type='date']:required:valid:before {
+  content: none;
+  position: absolute;
+  color: var(--primary-grey);
+}
+
 input[type='date']:required:not(:focus) {
   color: transparent;
 }
 input[type='date']:required:not(:valid) {
   color: transparent;
+}
+input[type='date']:required:valid {
+  color: var(--primary-black);
 }
 /* input[type="date"] {
     color: var(--white);

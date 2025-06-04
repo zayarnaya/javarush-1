@@ -5,9 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Find Your Alpine Ride" />
-    <link rel="shortcut icon" href="favicon.svg" />
+    <link href="favicon.ico" />
     <link href="fonts.css" rel="stylesheet" type="text/css" />
     <link href="common.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
   </head>
   <body>
     <link href="assets/styles/header.css" rel="stylesheet" type="text/css" />
@@ -39,12 +40,12 @@
       <section class="section-hero">
         <div class="tickets">
           <h1>Skip the Climbing, Catch the Bus</h1>
-          <form class="tickets__form">
+          <form class="tickets__form" action="bus-list.html">
             <legend>
               We sell tickets to the best seats in the house – houses on wheels, that is! Get ready for jaw-dropping
               views without breaking a sweat.
             </legend>
-            <fieldset class="tickets__trip-settings">
+            <fieldset class="tickets__trip-settings js-radio-group">
               <label class="settings__label" for="round"
                 ><input type="radio" id="round" name="trip-type" value="round" checked />Round trip</label
               >
@@ -52,8 +53,11 @@
                 ><input type="radio" id="one-way" name="trip-type" value="one-way" />One way</label
               >
               <div class="number__controls">
-                <button class="trip-settings__btn" disabled>-</button
-                ><input type="number" id="persons" name="persons" value="1" /><button class="trip-settings__btn">
+                <button type="button" class="trip-settings__btn js-minus" disabled>-</button
+                ><input class="js-number" type="number" id="persons" name="persons" value="1" /><button
+                  type="button"
+                  class="trip-settings__btn js-plus"
+                >
                   +
                 </button>
               </div>
@@ -66,10 +70,24 @@
                 >Arrival<input type="text" id="arrival" name="arrival" placeholder="Where to?"
               /></label>
               <label class="tickets__label"
-                >Pick your lucky day<input type="date" required id="depart" name="depart" placeholder="Depart" value=""
+                >Pick your lucky day<input
+                  class="js-depart-date"
+                  type="date"
+                  required
+                  id="depart"
+                  name="depart"
+                  placeholder="Depart"
+                  value=""
               /></label>
               <label class="tickets__label"
-                >&nbsp;<input type="date" required id="return" name="return" placeholder="Return" value="" disabled
+                >&nbsp;<input
+                  class="js-return-date"
+                  type="date"
+                  required
+                  id="return"
+                  name="return"
+                  placeholder="Return"
+                  value=""
               /></label>
             </fieldset>
             <button type="submit">Find My Alpine Ride</button>
