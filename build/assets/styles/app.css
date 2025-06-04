@@ -13,10 +13,6 @@
   justify-content: space-between;
 }
 
-.app__link {
-  text-decoration: none;
-}
-
 .app__badge {
   height: 65px;
 }
