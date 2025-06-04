@@ -1,0 +1,31 @@
+.faq {
+  padding: calc(2 * var(--layout-margin)) calc(177px - var(--layout-margin));
+  gap: 40px;
+}
+
+.faq-accordion {
+  position: relative;
+}
+
+.faq-accordion__summary {
+  list-style: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+  padding: 16px 0;
+}
+
+.faq-accordion__toggler {
+  position: absolute;
+  right: 0;
+}
+
+.faq-accordion details[open] .faq-accordion__toggler {
+  transform: rotate(45deg);
+}
+
+.faq-accordion__text {
+  padding: 16px 0;
+  font-size: 16px;
+  line-height: 140%;
+}
