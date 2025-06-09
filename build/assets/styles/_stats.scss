@@ -1,0 +1,35 @@
+.section-stats {
+  justify-content: space-between;
+  padding: 60px var(--layout-margin);
+  background-color: var(--primary-blue);
+}
+
+.stats {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    list-style: none;
+  }
+
+  &__list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__text-big,
+  &__text-small {
+    color: white;
+  }
+
+  &__text-big {
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  &__text-small {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}

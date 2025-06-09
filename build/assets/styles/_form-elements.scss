@@ -26,21 +26,42 @@ button {
   margin: 0;
   font-size: 1.25em;
   font-weight: bold;
-}
+  cursor: pointer;
 
-button.trip-settings__btn {
-  border: none;
-  background-color: var(--white);
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  line-height: 20px;
-  font-size: 14px;
-  color: var(--primary-blue);
-}
+  &:disabled {
+    background-color: var(--primary-grey);
+  }
 
-button.trip-settings__btn:disabled {
-  color: var(--primary-black-50);
+  &:focus {
+    background-color: darken(#0578ff, 30%);
+  }
+
+  &:hover {
+    background-color: darken(#0578ff, 10%);
+  }
+
+  &.trip-settings__btn {
+    border: none;
+    background-color: var(--white);
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    font-size: 14px;
+    color: var(--primary-blue);
+
+    &:disabled {
+      color: var(--primary-black-50);
+    }
+
+    &:focus {
+      background-color: darken(#0578ff, 30%);
+    }
+
+    &:hover {
+      background-color: darken(#0578ff, 10%);
+    }
+  }
 }
 
 input[type='text'],
@@ -88,16 +109,3 @@ input[type='date']:required:not(:valid) {
 input[type='date']:required:valid {
   color: var(--primary-black);
 }
-/* input[type="date"] {
-    color: var(--white);
-  } */
-
-/* input[type="date"]:focus,
-  input[type="date"]:valid {
-    color: var(--primary-black);
-  } */
-
-/* input[type="date"]:focus::before,
-  input[type="date"]:valid::before {
-    content: "";
-  } */

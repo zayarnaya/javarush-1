@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
+
+  &__nav {
+    display: flex;
+    justify-content: flex-end;
+
+    &-list {
+      list-style: none;
+      display: flex;
+      gap: 70px;
+      padding: 0;
+      margin: 0;
+
+      &-item {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    &-link {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}

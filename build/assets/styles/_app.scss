@@ -1,0 +1,18 @@
+.app {
+  background-color: var(--yellow);
+  height: 462px;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+
+  &__badges {
+    display: flex;
+    width: 863px;
+    min-width: calc(var(--breakpoint-m) + 1px + 2 * var(--layout-margin-neg));
+    justify-content: space-between;
+  }
+
+  &__badge {
+    height: 65px;
+  }
+}

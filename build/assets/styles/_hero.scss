@@ -16,9 +16,25 @@
   flex-direction: column;
   gap: var(--layout-gutter);
 }
+.tickets {
+  &__trip-settings {
+    padding: 0 var(--layout-gutter);
+  }
 
-.tickets__trip-settings {
-  padding: 0 var(--layout-gutter);
+  &__trip-settings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 10px;
+  }
+
+  &__text-inputs {
+    display: grid;
+    gap: var(--layout-gutter);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 
 .settings__label {
@@ -28,22 +44,7 @@
   padding: 2px 0;
 }
 
-.tickets__trip-settings {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--white);
-  border-radius: 10px;
-}
-
 .number__controls {
   display: flex;
   align-items: center;
-}
-
-.tickets__text-inputs {
-  display: grid;
-  gap: var(--layout-gutter);
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
 }
