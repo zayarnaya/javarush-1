@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // устанавливаем год в футере
+  setCopyrightYear('js-copyright');
+
   const radioGroup = document.querySelector('.js-radio-group');
   const departDate = document.querySelector('.js-depart-date');
   const returnDate = document.querySelector('.js-return-date');
@@ -108,4 +111,18 @@ function decrementPersons(input, btn) {
   if (!input) return;
   input.value = +input.value - 1;
   if (input.value === '1') disableElement(btn);
+}
+
+/**
+ * Подставляет текущий год в футер
+ * @param {string} classname - класс спана с годом
+ * @returns {void}
+ */
+function setCopyrightYear(classname) {
+  const year = document.querySelector('.' + classname);
+  if (!year) return;
+  const thisYear = new Date().getFullYear();
+  if (thisYear != 2025) {
+    year.textContent = `2025 - ${thisYear}`;
+  }
 }

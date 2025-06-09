@@ -15,3 +15,27 @@
   src: url('./assets/fonts/Poppins/Poppins-Medium.ttf');
   font-weight: 500;
 }
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins/Poppins-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets//fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets//fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets//fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf');
+  font-weight: 600;
+}
