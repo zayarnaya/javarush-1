@@ -11,86 +11,136 @@
   </head>
   <body>
     <header class="header">
-      <div class="logo">
-        <img class="logo__image" src="./assets/images/logo.svg" width="73" height="34" alt="Wonders logo" />
-        <span class="logo__text">Wonders</span>
+      <div class="container">
+        <div class="header__wrapper">
+          <div class="logo">
+            <img class="logo__image" src="./assets/images/logo.svg" width="73" height="34" alt="Wonders logo" />
+            <span class="logo__text">Wonders</span>
+          </div>
+          <nav class="header__nav">
+            <ul class="header__nav-list">
+              <li class="header__nav-list-item">
+                <a class="header__nav-link" href="#app"> Mobile App </a>
+              </li>
+              <li class="header__nav-list-item">
+                <a class="header__nav-link" href="#faq"> FAQs </a>
+              </li>
+              <li class="header__nav-list-item">
+                <a class="header__nav-link" href="#contact"> Contact </a>
+              </li>
+              <li class="header__nav-list-item">
+                <strong><a class="header__nav-link" href="/"> Sign Up </a></strong>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-list-item">
-            <a class="header__nav-link" href="#app"> Mobile App </a>
-          </li>
-          <li class="header__nav-list-item">
-            <a class="header__nav-link" href="#faq"> FAQs </a>
-          </li>
-          <li class="header__nav-list-item">
-            <a class="header__nav-link" href="#contact"> Contact </a>
-          </li>
-          <li class="header__nav-list-item">
-            <strong><a class="header__nav-link" href="/"> Sign Up </a></strong>
-          </li>
-        </ul>
-      </nav>
     </header>
     <main>
-      <section class="section-hero">
-        <div class="tickets">
-          <h1>Skip the Climbing, Catch the Bus</h1>
-          <form class="tickets__form" action="bus-list.html">
-            <legend>
-              We sell tickets to the best seats in the house – houses on wheels, that is! Get ready for jaw-dropping
-              views without breaking a sweat.
-            </legend>
-            <fieldset class="tickets__trip-settings js-radio-group">
-              <label class="settings__label" for="round"
-                ><input type="radio" id="round" name="trip-type" value="round" checked />Round trip</label
-              >
-              <label class="settings__label" for="one-way"
-                ><input type="radio" id="one-way" name="trip-type" value="one-way" />One way</label
-              >
-              <div class="number__controls">
-                <button type="button" class="trip-settings__btn js-minus" disabled>-</button
-                ><input class="js-number" type="number" id="persons" name="persons" value="1" /><button
-                  type="button"
-                  class="trip-settings__btn js-plus"
-                >
-                  +
-                </button>
-              </div>
-            </fieldset>
-            <fieldset class="tickets__text-inputs">
-              <label class="tickets__label"
-                >Departure<input type="text" id="departure" name="departure" placeholder="Your City/Station"
-              /></label>
-              <label class="tickets__label"
-                >Arrival<input type="text" id="arrival" name="arrival" placeholder="Where to?"
-              /></label>
-              <label class="tickets__label"
-                >Pick your lucky day<input
-                  class="js-depart-date"
-                  type="date"
-                  required
-                  id="depart"
-                  name="depart"
-                  placeholder="Depart"
-                  value=""
-              /></label>
-              <label class="tickets__label"
-                >&nbsp;<input
-                  class="js-return-date"
-                  type="date"
-                  required
-                  id="return"
-                  name="return"
-                  placeholder="Return"
-                  value=""
-              /></label>
-            </fieldset>
-            <button type="submit">Find My Alpine Ride</button>
-          </form>
-        </div>
-        <div class="hero">
-          <img src="assets/images/photoes/fullsize/Hero.png" alt="Wonders" class="hero__image" />
+      <section>
+        <div class="container">
+          <div class="hero">
+            <div class="tickets">
+              <h1>Skip The Climbing, Catch The Bus</h1>
+              <form class="tickets__form" action="bus-list.html">
+                <legend>
+                  We sell tickets to the best seats in the house – houses on wheels, that is! <br />Get ready for
+                  jaw-dropping views without breaking a sweat.
+                </legend>
+                <fieldset class="tickets__trip-settings js-radio-group">
+                  <label class="settings__label" for="round"
+                    ><input type="radio" id="round" name="trip-type" value="round" checked />Round trip</label
+                  >
+                  <label class="settings__label" for="one-way"
+                    ><input type="radio" id="one-way" name="trip-type" value="one-way" />One way</label
+                  >
+                  <div class="number__controls">
+                    <button type="button" class="trip-settings__btn js-minus" disabled>-</button
+                    ><input class="js-number" type="number" id="persons" name="persons" value="1" /><button
+                      type="button"
+                      class="trip-settings__btn js-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                </fieldset>
+                <fieldset class="tickets__text-inputs js-inputs">
+                  <label class="tickets__label"
+                    >Departure<br />&nbsp;<input
+                      type="text"
+                      id="departure"
+                      name="departure"
+                      placeholder="Your City/Station"
+                  /></label>
+                  <label class="tickets__label"
+                    >Arrival&nbsp;<br />&nbsp;<input type="text" id="arrival" name="arrival" placeholder="Where to?"
+                  /></label>
+                  <label class="tickets__label"
+                    >Pick your lucky day<br />&nbsp;<input
+                      class="js-depart-date"
+                      type="date"
+                      required
+                      id="depart"
+                      name="depart"
+                      placeholder="Depart"
+                      value=""
+                  /></label>
+                  <label class="tickets__label"
+                    >&nbsp;<br />&nbsp;<input
+                      class="js-return-date"
+                      type="date"
+                      required
+                      id="return"
+                      name="return"
+                      placeholder="Return"
+                      value=""
+                  /></label>
+                </fieldset>
+                <div class="calendar">
+                  <div class="calendar__wrapper">
+                    <button
+                      type="button"
+                      class="calendar__controls calendar__control_prev js-prev"
+                      aria-label="Previous month"
+                    ></button>
+                    <button
+                      type="button"
+                      class="calendar__controls calendar__control_next js-next"
+                      aria-label="Next month"
+                    ></button>
+                    <div class="calendar__main">
+                      <fieldset class="calendar__field">
+                        <legend class="js-legend">December</legend>
+                        <div class="calendar__grid">
+                          <div class="calendar__row calendar__weekdays">
+                            <span class="calendar__weekday">M</span>
+                            <span class="calendar__weekday">T</span>
+                            <span class="calendar__weekday">W</span>
+                            <span class="calendar__weekday">T</span>
+                            <span class="calendar__weekday">F</span>
+                            <span class="calendar__weekday">S</span>
+                            <span class="calendar__weekday">S</span>
+                          </div>
+                          <div class="calendar__row calendar__week">
+                            <button class="calendar__day">1</button>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="calendar__footer">
+                      <div class="calendar__buttons">
+                        <button type="reset" class="calendar__reset js-reset">Reset</button>
+                        <button type="button" class="calendar__apply js-apply">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit">Find My Alpine Ride</button>
+              </form>
+            </div>
+
+            <img src="assets/images/photoes/fullsize/Hero.png" alt="Wonders" class="hero__image" />
+          </div>
         </div>
       </section>
       <section class="full-width section-stats">

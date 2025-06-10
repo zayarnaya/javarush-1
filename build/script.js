@@ -24,6 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   incBtn.addEventListener('click', () => incrementPersons(persons, decBtn));
   decBtn.addEventListener('click', () => decrementPersons(persons, decBtn));
+
+  // инпут даты
+  const depDateInput = document.querySelector('.js-depart-date');
+  depDateInput.addEventListener('click', (e) => {
+    const { x, y } = e.target?.getBoundingClientRect();
+    const { clientX, clientY } = e;
+    if (clientX <= x + 50 && clientY <= y + 50) {
+      console.log('CALENDARRRR');
+    }
+  });
 });
 
 // вспомогательные функции
@@ -125,4 +135,19 @@ function setCopyrightYear(classname) {
   if (thisYear != 2025) {
     year.textContent = `2025 - ${thisYear}`;
   }
+}
+
+class Calendar {
+  _today;
+  year;
+  month1;
+  month2;
+  months = {
+    1: {
+      name: 'January',
+      days: 31,
+    },
+  };
+  departureDate;
+  returnDate;
 }
