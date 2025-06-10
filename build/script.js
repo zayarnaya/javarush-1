@@ -26,14 +26,37 @@ document.addEventListener('DOMContentLoaded', () => {
   decBtn.addEventListener('click', () => decrementPersons(persons, decBtn));
 
   // инпут даты
-  const depDateInput = document.querySelector('.js-depart-date');
-  depDateInput.addEventListener('click', (e) => {
-    const { x, y } = e.target?.getBoundingClientRect();
-    const { clientX, clientY } = e;
-    if (clientX <= x + 50 && clientY <= y + 50) {
-      console.log('CALENDARRRR');
-    }
+  const calendarPopup = document.querySelector('.js-calendar');
+  const dateInputs = document.querySelectorAll('.js-date');
+  dateInputs.forEach((input) =>
+    input.addEventListener('click', (e) => {
+      const { x, y } = e.target?.getBoundingClientRect();
+      const { clientX, clientY } = e;
+      if (clientX <= x + 50 && clientY <= y + 50) {
+        openCalendar();
+      }
+    }),
+  );
+  document.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('js-date') && !e.target.closest('.js-calendar')) closeCalendar();
   });
+
+  const calendar = new Calendar('.js-depart-date', '.js-return-date');
+  calendar.init();
+
+  document.querySelector('.js-next').addEventListener('click', calendar.slideToNext);
+
+  function openCalendar() {
+    if (calendarPopup.classList.contains('hidden')) {
+      calendarPopup.classList.remove('hidden');
+    }
+  }
+
+  function closeCalendar() {
+    if (!calendarPopup.classList.contains('hidden')) {
+      calendarPopup.classList.add('hidden');
+    }
+  }
 });
 
 // вспомогательные функции
@@ -140,14 +163,102 @@ function setCopyrightYear(classname) {
 class Calendar {
   _today;
   year;
-  month1;
-  month2;
-  months = {
-    1: {
-      name: 'January',
-      days: 31,
-    },
-  };
+  months = [];
+  monthLeftIndex;
+  maxLeftIndex;
+  monthsDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   departureDate;
   returnDate;
+  departInput;
+  returnInput;
+  day = 1000 * 60 * 60 * 24;
+  template;
+
+  constructor(departSelector, returnSelector) {
+    this._today = new Date();
+    this.year = this._today.getFullYear();
+    this.months.push(this._today.getMonth(), this.incrementMonth(this._today.getMonth()));
+    this.monthLeftIndex = 0;
+    this.maxLeftIndex = 22;
+    this.departInput = document.querySelector(departSelector);
+    this.returnInput = document.querySelector(returnSelector);
+    this.departureDate = this.departInput.value;
+    this.returnDate = this.returnInput.value;
+    this.monthsDays[1] = this.getDaysInFebruary(this.year);
+    const field = document.querySelector('.js-calendar-field');
+    this.template = field.cloneNode(true);
+    this.slideToNext = this.slideToNext.bind(this);
+  }
+
+  incrementMonth(month) {
+    // плохо что два дела делаются
+    let res = ++month > 11 ? 0 : month;
+    if (!res) this.year++;
+    return res;
+  }
+
+  decrementMonth(month) {
+    return --month < 0 ? 11 : month;
+  }
+
+  getDaysInFebruary(year) {
+    let date = new Date(`${year}-28-02`).getTime();
+    date += this.day;
+    return new Date(date).getMonth() === 1 ? 29 : 28;
+  }
+
+  init() {
+    const wrapper = document.querySelector('.js-main');
+    wrapper.innerHTML = '';
+    wrapper.appendChild(this.makeMonthCalendarNode(this.year, this.months[0]));
+    wrapper.appendChild(this.makeMonthCalendarNode(this.year, this.months[1]));
+    wrapper.setAttribute('style', 'left: 0');
+  }
+
+  slideToNext() {
+    this.months.push(this.incrementMonth(this.months.at(-1)));
+    this.monthLeftIndex++;
+    const wrapper = document.querySelector('.js-main');
+    wrapper.appendChild(this.makeMonthCalendarNode(this.year, this.months.at(-1)));
+    this.slideRight();
+  }
+
+  slideRight() {
+    const { width } = document.querySelector('.js-calendar-field').getBoundingClientRect();
+    const gap = 32;
+    const wrapper = document.querySelector('.js-main');
+    wrapper?.setAttribute('style', `left: -${this.monthLeftIndex * (width + gap)}px`);
+  }
+
+  makeMonthCalendarNode(year, month) {
+    const node = this.template.cloneNode(true);
+    const date = new Date(`${year}-${month + 1}-01`);
+    node.querySelector('.js-legend').textContent = `${date.toLocaleDateString('en', { month: 'long' })} ${year}`;
+    const startDayIndex = date.getDay() > 0 ? date.getDay() : 6;
+    const monthMatrix = [];
+    let index = 1;
+    for (let i = 0; i < 7; i++) {
+      const row = [];
+      for (let k = 0; k < 7; k++) {
+        if (i === 0 && k < startDayIndex) row.push(null);
+        else if (index > this.monthsDays[month]) row.push(null);
+        else row.push(index++);
+      }
+      monthMatrix.push(row);
+      if (index > this.monthsDays[month]) break;
+    }
+
+    let html = '';
+    for (let i = 0; i < monthMatrix.length; i++) {
+      let inner = '<div class="calendar__row calendar__week">';
+      for (let k = 0; k < 7; k++) {
+        inner += monthMatrix[i][k]
+          ? `<button type="button" class="calendar__day">${monthMatrix[i][k]}</button>`
+          : `<button type="button" class="calendar__day empty" disabled></button>`;
+      }
+      html = html + inner + '</div>';
+    }
+    node.querySelector('.js-calendar-grid').innerHTML += html;
+    return node;
+  }
 }

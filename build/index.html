@@ -77,7 +77,7 @@
                   /></label>
                   <label class="tickets__label"
                     >Pick your lucky day<br />&nbsp;<input
-                      class="js-depart-date"
+                      class="js-date js-depart-date"
                       type="date"
                       required
                       id="depart"
@@ -87,7 +87,7 @@
                   /></label>
                   <label class="tickets__label"
                     >&nbsp;<br />&nbsp;<input
-                      class="js-return-date"
+                      class="js-date js-return-date"
                       type="date"
                       required
                       id="return"
@@ -96,45 +96,81 @@
                       value=""
                   /></label>
                 </fieldset>
-                <div class="calendar">
-                  <div class="calendar__wrapper">
-                    <button
-                      type="button"
-                      class="calendar__controls calendar__control_prev js-prev"
-                      aria-label="Previous month"
-                    ></button>
-                    <button
-                      type="button"
-                      class="calendar__controls calendar__control_next js-next"
-                      aria-label="Next month"
-                    ></button>
-                    <div class="calendar__main">
-                      <fieldset class="calendar__field">
-                        <legend class="js-legend">December</legend>
-                        <div class="calendar__grid">
-                          <div class="calendar__row calendar__weekdays">
-                            <span class="calendar__weekday">M</span>
-                            <span class="calendar__weekday">T</span>
-                            <span class="calendar__weekday">W</span>
-                            <span class="calendar__weekday">T</span>
-                            <span class="calendar__weekday">F</span>
-                            <span class="calendar__weekday">S</span>
-                            <span class="calendar__weekday">S</span>
-                          </div>
-                          <div class="calendar__row calendar__week">
-                            <button class="calendar__day">1</button>
-                          </div>
+                <div class="calendar__placeholder">
+                  <div class="calendar js-calendar hidden">
+                    <div class="calendar__wrapper">
+                      <button
+                        type="button"
+                        class="calendar__controls calendar__control_prev js-prev"
+                        aria-label="Previous month"
+                      ></button>
+                      <button
+                        type="button"
+                        class="calendar__controls calendar__control_next js-next"
+                        aria-label="Next month"
+                      ></button>
+                      <div class="calendar__slider">
+                        <div class="calendar__main js-main">
+                          <fieldset class="calendar__field js-calendar-field">
+                            <legend class="js-legend"></legend>
+                            <div class="calendar__grid js-calendar-grid">
+                              <div class="calendar__row calendar__weekdays">
+                                <span class="calendar__weekday">M</span>
+                                <span class="calendar__weekday">T</span>
+                                <span class="calendar__weekday">W</span>
+                                <span class="calendar__weekday">T</span>
+                                <span class="calendar__weekday">F</span>
+                                <span class="calendar__weekday">S</span>
+                                <span class="calendar__weekday">S</span>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="calendar__field js-calendar-field">
+                            <legend class="js-legend">December</legend>
+                            <div class="calendar__grid js-calendar-grid">
+                              <div class="calendar__row calendar__weekdays">
+                                <span class="calendar__weekday">M</span>
+                                <span class="calendar__weekday">T</span>
+                                <span class="calendar__weekday">W</span>
+                                <span class="calendar__weekday">T</span>
+                                <span class="calendar__weekday">F</span>
+                                <span class="calendar__weekday">S</span>
+                                <span class="calendar__weekday">S</span>
+                              </div>
+                              <div class="calendar__row calendar__week">
+                                <button type="button" class="calendar__day">1</button>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="calendar__field">
+                            <legend class="js-legend">December</legend>
+                            <div class="calendar__grid">
+                              <div class="calendar__row calendar__weekdays">
+                                <span class="calendar__weekday">M</span>
+                                <span class="calendar__weekday">T</span>
+                                <span class="calendar__weekday">W</span>
+                                <span class="calendar__weekday">T</span>
+                                <span class="calendar__weekday">F</span>
+                                <span class="calendar__weekday">S</span>
+                                <span class="calendar__weekday">S</span>
+                              </div>
+                              <div class="calendar__row calendar__week">
+                                <button type="button" class="calendar__day">1</button>
+                              </div>
+                            </div>
+                          </fieldset>
                         </div>
-                      </fieldset>
-                    </div>
-                    <div class="calendar__footer">
-                      <div class="calendar__buttons">
-                        <button type="reset" class="calendar__reset js-reset">Reset</button>
-                        <button type="button" class="calendar__apply js-apply">Apply</button>
+                      </div>
+                      <div class="calendar__footer">
+                        <div class="calendar__buttons">
+                          <button type="reset" class="calendar__reset js-reset">Reset</button>
+                          <button type="button" class="calendar__apply js-apply">Apply</button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <button type="submit">Find My Alpine Ride</button>
               </form>
             </div>

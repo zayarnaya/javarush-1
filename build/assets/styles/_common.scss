@@ -88,6 +88,10 @@ ul {
   list-style: none;
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: 768) and (max-width: 1439px) {
   :root {
     --layout-margin: 32px;

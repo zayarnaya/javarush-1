@@ -116,6 +116,10 @@ ul {
   list-style: none;
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: 768) and (max-width: 1439px) {
   :root {
     --layout-margin: 32px;
@@ -451,6 +455,13 @@ input[type='date']:required:focus {
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
+  position: absolute;
+}
+.calendar__placeholder {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  margin-top: -1em;
 }
 .calendar__wrapper {
   display: flex;
@@ -469,6 +480,7 @@ input[type='date']:required:focus {
   background-position: center center;
   padding: 0;
   top: 9px;
+  z-index: 100;
 }
 .calendar__controls:hover,
 .calendar__controls:focus {
@@ -481,17 +493,24 @@ input[type='date']:required:focus {
 .calendar__control_next {
   right: 15px;
 }
+.calendar__slider {
+  width: 100%;
+  overflow: hidden;
+}
 .calendar__main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: nowrap;
   gap: var(--layout-gutter);
   padding: 0 8px;
+  position: relative;
 }
 .calendar__field {
   display: flex;
   flex-direction: column;
+  width: calc(3 * var(--layout-col-width) + var(--layout-gutter) - 16px);
   gap: 8px;
   padding: 0 8px;
+  flex-shrink: 0;
 }
 .calendar__field legend {
   display: block;
@@ -508,7 +527,7 @@ input[type='date']:required:focus {
 .calendar__row {
   display: grid;
   gap: 4px;
-  grid-template-columns: repeat(7, 32px);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 32px;
   border-radius: 4px;
   background-color: var(--grey);
@@ -521,8 +540,9 @@ input[type='date']:required:focus {
   color: var(--primary-black-50);
 }
 .calendar__day {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  max-width: 32px;
+  aspect-ratio: 1/1;
   background-color: transparent;
   color: var(--primary-black);
   font-size: 12px;
@@ -545,6 +565,10 @@ input[type='date']:required:focus {
 }
 .calendar__day:disabled {
   color: var(--primary-grey-50);
+}
+.calendar__day.empty:disabled {
+  background-color: transparent;
+  color: transparent;
 }
 .calendar__footer {
   display: flex;
