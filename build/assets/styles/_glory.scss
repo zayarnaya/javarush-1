@@ -5,7 +5,8 @@
   &__gallery {
     display: grid;
     width: 100%;
-    gap: var(--layout-gutter);
+    column-gap: var(--layout-gutter);
+    row-gap: 24px;
     grid-template-columns: repeat(12, var(--layout-col-width));
     grid-template-rows: repeat(8, auto);
   }

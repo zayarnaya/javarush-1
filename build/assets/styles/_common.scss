@@ -19,8 +19,12 @@
   --layout-margin-neg: -4em;
   --layout-gutter: 2em;
   --layout-gutter-neg: -2em;
-  --layout-col-width: calc((100vw + var(--layout-margin-neg) * 2 + var(--layout-gutter-neg) * 11) / 12);
+  --layout-window: min(100vw, 1440px);
+  --layout-col-width: calc((var(--layout-window) + var(--layout-margin-neg) * 2 + var(--layout-gutter-neg) * 11) / 12);
 }
+
+/*TODO: ввести обертку контейнер,
+посмотреть и привести в соответствие на больших разрешениях */
 
 * {
   box-sizing: border-box;
@@ -35,23 +39,32 @@ body {
   width: 100vw;
   min-height: 100vh;
   margin: 0;
-  padding: 0px var(--layout-margin);
+  // padding: 0px var(--layout-margin);
   background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
   overflow-x: hidden;
   min-width: 360px;
 }
 
-main,
-section {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
+// main,
+// section {
+//   width: 100%;
+//   max-width: 1440px;
+//   padding: 0;
+//   margin: 0 auto;
+// }
 
 section {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: var(--layout-gutter);
+}
+
+.container {
+  padding: 0 var(--layout-margin);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .full-width {

@@ -1,13 +1,16 @@
-.section-hero {
+.hero {
   display: grid;
   gap: var(--layout-gutter);
   grid-template-columns: 1fr 1fr;
   padding: var(--layout-margin) 0 calc(var(--layout-margin) * 2) 0;
-}
 
-.hero__image {
-  max-width: 100%;
-  transform: scaleX(-1);
+  &__image {
+    max-width: 100%;
+    transform: scaleX(-1);
+    margin-top: -77px;
+    margin-left: 35px;
+    width: 89%;
+  }
 }
 
 .tickets,
@@ -18,22 +21,31 @@
 }
 .tickets {
   &__trip-settings {
-    padding: 0 var(--layout-gutter);
+    padding: 0 24px 0 40px;
   }
 
   &__trip-settings {
     display: flex;
+    height: 34px;
     justify-content: space-between;
     align-items: center;
     background-color: var(--white);
     border-radius: 10px;
+    padding-top: 3px;
   }
 
   &__text-inputs {
     display: grid;
-    gap: var(--layout-gutter);
+    gap: 24px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    // position: relative;
+  }
+
+  &__label {
+    line-height: 120%;
+    font-size: 16px;
+    font-weight: 600;
   }
 }
 
@@ -42,9 +54,19 @@
   align-items: center;
   gap: 6px;
   padding: 2px 0;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .number__controls {
   display: flex;
   align-items: center;
+  position: relative;
+
+  &:before {
+    content: url('./assets/images/person.svg');
+    position: absolute;
+    top: -4px;
+    left: -22px;
+  }
 }
