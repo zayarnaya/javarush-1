@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   decBtn.addEventListener('click', () => decrementPersons(persons, decBtn));
 
   // инпут даты
+  // открываем календарь при клике в область календарика
   const calendarPopup = document.querySelector('.js-calendar');
   const dateInputs = document.querySelectorAll('.js-date');
   dateInputs.forEach((input) =>
@@ -33,30 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const { x, y } = e.target?.getBoundingClientRect();
       const { clientX, clientY } = e;
       if (clientX <= x + 50 && clientY <= y + 50) {
-        openCalendar();
+        showElement(calendarPopup);
       }
     }),
   );
+
+  // закрываем календарь при клике на любую область страницы, кроме инпутов даты
   document.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('js-date') && !e.target.closest('.js-calendar')) closeCalendar();
+    if (!e.target.classList.contains('js-date') && !e.target.closest('.js-calendar')) hideElement(calendarPopup);
   });
 
+  // инициализируем календарь
   const calendar = new Calendar('.js-depart-date', '.js-return-date');
   calendar.init();
-
-  document.querySelector('.js-next').addEventListener('click', calendar.slideToNext);
-
-  function openCalendar() {
-    if (calendarPopup.classList.contains('hidden')) {
-      calendarPopup.classList.remove('hidden');
-    }
-  }
-
-  function closeCalendar() {
-    if (!calendarPopup.classList.contains('hidden')) {
-      calendarPopup.classList.add('hidden');
-    }
-  }
 });
 
 // вспомогательные функции
@@ -97,6 +87,28 @@ function enableElement(element) {
 
   if (element.hasAttribute('disabled')) {
     element.removeAttribute('disabled');
+  }
+}
+
+/**
+ * Включает видимость элемента
+ * @param {Element} element - выбранный элемент
+ */
+
+function showElement(element) {
+  if (element.classList.contains('hidden')) {
+    element.classList.remove('hidden');
+  }
+}
+
+/**
+ * Включает видимость элемента
+ * @param {Element} element - выбранный элемент
+ */
+
+function hideElement(element) {
+  if (!element.classList.contains('hidden')) {
+    element.classList.add('hidden');
   }
 }
 
@@ -173,64 +185,138 @@ class Calendar {
   returnInput;
   day = 1000 * 60 * 60 * 24;
   template;
+  wrapper;
+  nextBtn;
+  prevBtn;
 
-  constructor(departSelector, returnSelector) {
+  /**
+   * Конструктор
+   * @param {string} departSelector - селектор инпута даты отбытия
+   * @param {string} returnSelector - селектор инпута даты прибытия
+   * @param {Record<string, any>} options - дополнительные опции:
+   * max - максимальное количество месяцев
+   */
+
+  constructor(departSelector, returnSelector, options) {
     this._today = new Date();
     this.year = this._today.getFullYear();
-    this.months.push(this._today.getMonth(), this.incrementMonth(this._today.getMonth()));
+    this.months.push(this._today.getMonth(), this._incrementMonth(this._today.getMonth()));
     this.monthLeftIndex = 0;
-    this.maxLeftIndex = 22;
+    this.maxLeftIndex = options?.max ?? 15;
     this.departInput = document.querySelector(departSelector);
     this.returnInput = document.querySelector(returnSelector);
     this.departureDate = this.departInput.value;
     this.returnDate = this.returnInput.value;
-    this.monthsDays[1] = this.getDaysInFebruary(this.year);
+    this.monthsDays[1] = this._getDaysInFebruary(this.year);
+
     const field = document.querySelector('.js-calendar-field');
     this.template = field.cloneNode(true);
+
+    this.init = this.init.bind(this);
     this.slideToNext = this.slideToNext.bind(this);
+    this.slideToPrev = this.slideToPrev.bind(this);
+    this._slide = this._slide.bind(this);
+
+    this.wrapper = document.querySelector('.js-main');
+    this.nextBtn = document.querySelector('.js-next');
+    this.prevBtn = document.querySelector('.js-prev');
   }
 
-  incrementMonth(month) {
+  /**
+   * Прибавляет месяц, если месяц больше 12 - обнуляет и прибавляет год
+   * @param {number} month - номер месяца (0-indexed)
+   * @returns {number} - номер следующего месяца (0-indexed)
+   */
+
+  _incrementMonth(month) {
     // плохо что два дела делаются
     let res = ++month > 11 ? 0 : month;
     if (!res) this.year++;
     return res;
   }
 
-  decrementMonth(month) {
-    return --month < 0 ? 11 : month;
-  }
+  /**
+   * Вычисляет количество дней в феврале года
+   * @param {number} year - год для вычисления
+   * @returns {number} - количество дней в феврале переданного года
+   */
 
-  getDaysInFebruary(year) {
+  _getDaysInFebruary(year) {
     let date = new Date(`${year}-28-02`).getTime();
     date += this.day;
     return new Date(date).getMonth() === 1 ? 29 : 28;
   }
 
+  /**
+   * Публичный метод, доступен из инстанса
+   * Инициализирует календарь
+   */
+
   init() {
-    const wrapper = document.querySelector('.js-main');
-    wrapper.innerHTML = '';
-    wrapper.appendChild(this.makeMonthCalendarNode(this.year, this.months[0]));
-    wrapper.appendChild(this.makeMonthCalendarNode(this.year, this.months[1]));
-    wrapper.setAttribute('style', 'left: 0');
+    this.wrapper.innerHTML = '';
+    this.wrapper.appendChild(this._makeMonthCalendarNode(this.year, this.months[0]));
+    this.wrapper.appendChild(this._makeMonthCalendarNode(this.year, this.months[1]));
+    this.wrapper.setAttribute('style', 'left: 0');
+    this.nextBtn.addEventListener('click', this.slideToNext);
+    this.prevBtn.addEventListener('click', this.slideToPrev);
   }
+
+  /**
+   * Публичный метод, доступен из инстанса
+   * Перелистывает календарь вперед
+   */
 
   slideToNext() {
-    this.months.push(this.incrementMonth(this.months.at(-1)));
+    if (this.monthLeftIndex === 0) {
+      this.prevBtn.removeAttribute('disabled');
+    }
     this.monthLeftIndex++;
-    const wrapper = document.querySelector('.js-main');
-    wrapper.appendChild(this.makeMonthCalendarNode(this.year, this.months.at(-1)));
-    this.slideRight();
+    if (this.months.length - 1 === this.monthLeftIndex && this.monthLeftIndex <= this.maxLeftIndex) {
+      this.months.push(this._incrementMonth(this.months.at(-1)));
+    }
+    if (this.monthLeftIndex >= this.maxLeftIndex) {
+      this.nextBtn.setAttribute('disabled', true);
+    }
+
+    this.wrapper.appendChild(this._makeMonthCalendarNode(this.year, this.months.at(-1)));
+    this._slide();
   }
 
-  slideRight() {
+  /**
+   * Публичный метод, доступен из инстанса
+   * Перелистывает календарь назад
+   */
+
+  slideToPrev() {
+    if (this.monthLeftIndex >= this.maxLeftIndex) {
+      this.nextBtn.removeAttribute('disabled');
+    }
+    this.monthLeftIndex--;
+    if (this.monthLeftIndex === 0) {
+      this.prevBtn.setAttribute('disabled', true);
+    }
+    this._slide();
+  }
+
+  /**
+   * Вспомогательный метод
+   * Перелистывает календарь
+   */
+
+  _slide() {
     const { width } = document.querySelector('.js-calendar-field').getBoundingClientRect();
     const gap = 32;
-    const wrapper = document.querySelector('.js-main');
-    wrapper?.setAttribute('style', `left: -${this.monthLeftIndex * (width + gap)}px`);
+    this.wrapper?.setAttribute('style', `left: -${this.monthLeftIndex * (width + gap)}px`);
   }
 
-  makeMonthCalendarNode(year, month) {
+  /**
+   * Создает элемент календаря на месяц (потом его надо вставить в документ)
+   * @param {number} year - год для формирования календаря
+   * @param {number} month - номер месяца для формирования календаря (0-indexed)
+   * @returns {Element} - нода календаря на месяц
+   */
+
+  _makeMonthCalendarNode(year, month) {
     const node = this.template.cloneNode(true);
     const date = new Date(`${year}-${month + 1}-01`);
     node.querySelector('.js-legend').textContent = `${date.toLocaleDateString('en', { month: 'long' })} ${year}`;

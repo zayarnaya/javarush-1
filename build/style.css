@@ -470,6 +470,9 @@ input[type='date']:required:focus {
   position: relative;
 }
 .calendar__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   background-color: transparent;
@@ -485,6 +488,11 @@ input[type='date']:required:focus {
 .calendar__controls:hover,
 .calendar__controls:focus {
   background-color: var(--grey);
+}
+.calendar__controls:disabled {
+  background-color: transparent;
+  background-image: none;
+  cursor: auto;
 }
 .calendar__control_prev {
   transform: scaleX(-1);
@@ -507,7 +515,7 @@ input[type='date']:required:focus {
 .calendar__field {
   display: flex;
   flex-direction: column;
-  width: calc(3 * var(--layout-col-width) + var(--layout-gutter) - 16px);
+  width: calc(3 * var(--layout-col-width) + var(--layout-gutter) - 8px);
   gap: 8px;
   padding: 0 8px;
   flex-shrink: 0;
