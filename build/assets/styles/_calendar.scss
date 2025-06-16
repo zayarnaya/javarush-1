@@ -132,12 +132,13 @@
       background-color: var(--primary-grey-50);
     }
 
-    &:focus {
+    &:focus,
+    &:focus:not(:disabled) {
       background-color: transparent;
     }
 
     &.selected {
-      background-color: var(--primary-blue);
+      background-color: var(--primary-blue) !important;
     }
 
     &.accent {

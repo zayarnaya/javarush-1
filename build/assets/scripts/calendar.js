@@ -119,10 +119,6 @@ class Calendar {
             this.setDepartureDate(date);
           }
         }
-
-        if (!!this.departureDate && !!this.returnDate && this.departureDate > this.returnDate) {
-          [this.departureDate, this.returnDate] = [this.returnDate, this.departureDate];
-        }
       }
     });
   }
@@ -237,6 +233,10 @@ class Calendar {
     this.departureDate = date;
     this._selectDate(date);
 
+    if (!!this.departureDate && !!this.returnDate && this.departureDate > this.returnDate) {
+      [this.departureDate, this.returnDate] = [this.returnDate, this.departureDate];
+    }
+
     if (!this.isOneWay && !!this.departureDate && !!this.returnDate) {
       this.highlight();
     } else {
@@ -254,6 +254,10 @@ class Calendar {
     this._deselectDate(prevDate);
     this.returnDate = date;
     this._selectDate(date);
+
+    if (!!this.departureDate && !!this.returnDate && this.departureDate > this.returnDate) {
+      [this.departureDate, this.returnDate] = [this.returnDate, this.departureDate];
+    }
 
     if (!this.isOneWay && !!this.departureDate && !!this.returnDate) {
       this.highlight();
@@ -327,10 +331,10 @@ class Calendar {
     // console.log(indexFrom, indexTo)
     const { width } = document.querySelector('.js-day').getBoundingClientRect();
     const { width: rowWidth } = document.querySelector('.calendar__week').getBoundingClientRect();
-    const dayFromIndex = Array.from(allWeeks[indexFrom].querySelectorAll('.js-day')).findIndex(
+    const dayFromIndex = Array.from(allWeeks[indexFrom].querySelectorAll('.calendar__day')).findIndex(
       (day) => day.dataset.date === `${this.departureDate}`,
     );
-    const dayToIndex = Array.from(allWeeks[indexTo].querySelectorAll('.js-day')).findIndex(
+    const dayToIndex = Array.from(allWeeks[indexTo].querySelectorAll('.calendar__day')).findIndex(
       (day) => day.dataset.date === `${this.returnDate}`,
     );
     const startAbs = dayFromIndex * width + dayFromIndex * 4 + 0.5 * width;
