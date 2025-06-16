@@ -50,8 +50,7 @@ input[type='number'] {
   border: none;
 }
 
-button {
-  border: none;
+.btn-blue {
   border-radius: 10px;
   background-color: var(--primary-blue);
   color: var(--white);
@@ -73,9 +72,14 @@ button {
   &:hover:not(:disabled) {
     background-color: darken(#0578ff, 10%);
   }
+}
+
+button {
+  border: none;
 
   &.trip-settings__btn {
     border: none;
+    border-radius: 50%;
     background-color: var(--white);
     width: 20px;
     height: 20px;

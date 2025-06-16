@@ -349,8 +349,7 @@ input[type='number'] {
   border: none;
 }
 
-button {
-  border: none;
+.btn-blue {
   border-radius: 10px;
   background-color: var(--primary-blue);
   color: var(--white);
@@ -360,18 +359,23 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-button:disabled {
+.btn-blue:disabled {
   background-color: var(--primary-grey);
   cursor: auto;
 }
-button:focus:not(:disabled) {
+.btn-blue:focus:not(:disabled) {
   background-color: #00316b;
 }
-button:hover:not(:disabled) {
+.btn-blue:hover:not(:disabled) {
   background-color: #0060d1;
+}
+
+button {
+  border: none;
 }
 button.trip-settings__btn {
   border: none;
+  border-radius: 50%;
   background-color: var(--white);
   width: 20px;
   height: 20px;
@@ -548,9 +552,7 @@ input[type='date']:required:focus {
   z-index: 100;
 }
 .calendar__controls:hover,
-.calendar__controls:focus,
-.calendar__controls:focus:not(:disabled),
-.calendar__controls:hover:not(:disabled) {
+.calendar__controls:focus {
   background-color: var(--grey);
 }
 .calendar__controls:disabled {
