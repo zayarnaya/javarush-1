@@ -65,41 +65,49 @@ const Stations = [
   'Kranjska Gora Avtobusna Postaja',
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const departureList = [...Stations];
-  const arrivalList = [...Stations];
+function inputTips(type) {
+  const stationsList = [...Stations];
 
-  const departureInput = document.querySelector('#departure');
-  const departureTipsWrapper = document.querySelector('.js-departure-tips');
-  const departureTipsList = document.querySelector('.js-departure-list');
+  const input = document.querySelector(`#${type}`);
+  const wrapper = document.querySelector(`.js-${type}-tips`);
+  const list = document.querySelector(`.js-${type}-list`);
 
-  const arrivalInput = document.querySelector('#arrival');
-  const arrivalTipsWrapper = document.querySelector('.js-arrival-tips');
-  const arrivalTipsList = document.querySelector('.js-arrival-list');
+  function detectMouseOut(e) {
+    const elements = document.elementsFromPoint(e.clientX, e.clientY);
+    if (elements.indexOf(input) < 0 && elements.indexOf(wrapper) < 0) {
+      wrapper.classList.remove('active');
+      document.removeEventListener('mousemove', detectMouseOut);
+    }
+  }
 
-  departureInput.addEventListener('click', () => {
-    departureTipsWrapper.classList.toggle('active');
+  input.addEventListener('click', () => {
+    wrapper.classList.toggle('active');
+    document.addEventListener('mousemove', detectMouseOut);
   });
-  departureInput.addEventListener('change', () => {
-    departureTipsWrapper.classList.remove('active');
+  input.addEventListener('change', () => {
+    wrapper.classList.remove('active');
   });
-  arrivalInput.addEventListener('click', () => {
-    arrivalTipsWrapper.classList.add('active');
-  });
-  arrivalInput.addEventListener('change', () => {
-    arrivalTipsWrapper.classList.remove('active');
+  input.addEventListener('input', (e) => {
+    populateList(
+      list,
+      stationsList.filter((item) => item.toLowerCase().startsWith(e.currentTarget.value.toLowerCase())),
+    );
   });
 
   // набиваем списки
-  populateList(departureTipsList, departureList);
-  populateList(arrivalTipsList, arrivalList);
+  populateList(list, stationsList);
 
-  departureTipsList.addEventListener('click', (e) => {
+  list.addEventListener('click', (e) => {
     if (e.target.tagName.toLowerCase() === 'li') {
-      departureInput.value = e.target.textContent;
-      departureInput.focus();
+      input.value = e.target.textContent;
+      input.focus();
     }
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  inputTips('departure');
+  inputTips('arrival');
 });
 
 function populateList(list, array) {
