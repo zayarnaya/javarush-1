@@ -100,11 +100,13 @@
     display: grid;
     gap: 4px;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 32px;
     border-radius: 4px;
-    background-color: var(--grey);
     justify-items: center;
     align-items: center;
+
+    &.calendar__weekdays {
+      grid-template-rows: 32px;
+    }
   }
 
   &__weekday {
@@ -126,9 +128,12 @@
     padding: 0;
     cursor: pointer;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: var(--primary-grey-50);
+    }
+
+    &:focus {
+      background-color: transparent;
     }
 
     &.selected {

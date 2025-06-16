@@ -7,6 +7,7 @@
     <meta name="description" content="Find Your Alpine Ride" />
     <link href="favicon.ico" />
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="assets/scripts/tips.js"></script>
     <script src="assets/scripts/calendar.js"></script>
     <script src="script.js"></script>
   </head>
@@ -72,10 +73,21 @@
                       id="departure"
                       name="departure"
                       placeholder="Your City/Station"
-                  /></label>
+                    />
+                    <div class="tips__placeholder">
+                      <div class="tips__wrapper js-departure-tips">
+                        <ul class="tips__list js-departure-list"></ul>
+                      </div>
+                    </div>
+                  </label>
                   <label class="tickets__label"
-                    >Arrival&nbsp;<br />&nbsp;<input type="text" id="arrival" name="arrival" placeholder="Where to?"
-                  /></label>
+                    >Arrival&nbsp;<br />&nbsp;<input type="text" id="arrival" name="arrival" placeholder="Where to?" />
+                    <div class="tips__placeholder">
+                      <div class="tips__wrapper js-arrival-tips">
+                        <ul class="tips__list js-arrival-list"></ul>
+                      </div>
+                    </div>
+                  </label>
                   <label class="tickets__label"
                     >Pick your lucky day<br />&nbsp;<input
                       class="js-date js-depart-date"

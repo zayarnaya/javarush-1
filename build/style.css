@@ -53,6 +53,7 @@
   --gradient-white: #f5f5f5;
   --gradient-blue: #ddecff;
   --white: #fff;
+  --highlight: rgba(0, 0, 0, 0.04);
   --layout-margin: 4em;
   --layout-margin-neg: -4em;
   --layout-gutter: 2em;
@@ -448,6 +449,45 @@ input[type='date']:required:focus {
   color: var(--primary-black);
 }
 
+.tips__placeholder {
+  width: 100%;
+  height: 0px;
+  position: relative;
+}
+.tips__wrapper {
+  width: 100%;
+  height: 0px;
+  opacity: 0;
+  position: absolute;
+  z-index: 150;
+  top: 12px;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 12px 24px;
+  overflow: hidden;
+}
+.tips__wrapper.active {
+  height: 193px;
+  overflow-y: auto;
+  opacity: 1;
+}
+.tips__list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+}
+.tips__list-item {
+  display: flex;
+  width: 100%;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.tips__list-item:hover {
+  background-color: var(--primary-blue-10);
+}
+
 .calendar {
   width: 100%;
   padding: 24px var(--layout-gutter);
@@ -536,11 +576,12 @@ input[type='date']:required:focus {
   display: grid;
   gap: 4px;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 32px;
   border-radius: 4px;
-  background-color: var(--grey);
   justify-items: center;
   align-items: center;
+}
+.calendar__row.calendar__weekdays {
+  grid-template-rows: 32px;
 }
 .calendar__weekday {
   font-size: 12px;
@@ -560,9 +601,11 @@ input[type='date']:required:focus {
   padding: 0;
   cursor: pointer;
 }
-.calendar__day:hover,
-.calendar__day:focus {
+.calendar__day:hover {
   background-color: var(--primary-grey-50);
+}
+.calendar__day:focus {
+  background-color: transparent;
 }
 .calendar__day.selected {
   background-color: var(--primary-blue);
@@ -742,6 +785,8 @@ input[type='date']:required:focus {
   grid-template-rows: 1fr 1fr;
 }
 .tickets__label {
+  display: flex;
+  flex-direction: column;
   line-height: 120%;
   font-size: 16px;
   font-weight: 600;

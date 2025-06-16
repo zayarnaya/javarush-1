@@ -103,23 +103,24 @@ class Calendar {
     this.form.addEventListener('click', (e) => {
       if (e.target?.classList?.contains('js-day')) {
         const { date } = e.target?.dataset;
-        if (date === this.departureDate) {
+        console.log(!!this.departureDate, !!this.returnDate);
+        if (!!this.departureDate && date === this.departureDate) {
           this.setDepartureDate('');
-        } else if (date === this.returnDate) {
+        } else if (!!this.returnDate && date === this.returnDate) {
           this.setReturnDate('');
         } else if (!this.departureDate || this.isOneWay) {
           this.setDepartureDate(date);
-        } else if (!this.isOneWay && !this.returnDate) {
+        } else if (!this.returnDate && !this.isOneWay) {
           this.setReturnDate(date);
         } else {
-          if (date > this.departureDate) {
+          if (!!this.departureDate && date > this.departureDate) {
             this.setReturnDate(date);
           } else {
             this.setDepartureDate(date);
           }
         }
 
-        if (this.departureDate > this.returnDate) {
+        if (!!this.departureDate && !!this.returnDate && this.departureDate > this.returnDate) {
           [this.departureDate, this.returnDate] = [this.returnDate, this.departureDate];
         }
       }
@@ -235,6 +236,12 @@ class Calendar {
     this._deselectDate(prevDate);
     this.departureDate = date;
     this._selectDate(date);
+
+    if (!this.isOneWay && !!this.departureDate && !!this.returnDate) {
+      this.highlight();
+    } else {
+      this.removeHighlight();
+    }
   }
 
   /**
@@ -247,6 +254,12 @@ class Calendar {
     this._deselectDate(prevDate);
     this.returnDate = date;
     this._selectDate(date);
+
+    if (!this.isOneWay && !!this.departureDate && !!this.returnDate) {
+      this.highlight();
+    } else {
+      this.removeHighlight();
+    }
   }
 
   /**
@@ -299,5 +312,55 @@ class Calendar {
   close() {
     // некрасивое, но пока так
     document.querySelector('.js-calendar').classList.add('hidden');
+  }
+
+  highlight() {
+    // const rowFrom = document.querySelector(`[data-date=${this.departureDate}]`).closest('.calendar__week');
+    // const rowTo = document.querySelector(`[data-date=${this.returnDate}]`).closest('.calendar__week');
+    const highlightColor = 'var(--highlight)';
+    const allWeeks = Array.from(document.querySelectorAll('.calendar__week'));
+    for (let week of allWeeks) {
+      week.setAttribute('style', '');
+    }
+    const indexFrom = allWeeks.findIndex((week) => !!week.querySelector(`[data-date="${this.departureDate}"]`));
+    const indexTo = allWeeks.findIndex((week) => !!week.querySelector(`[data-date="${this.returnDate}"]`));
+    // console.log(indexFrom, indexTo)
+    const { width } = document.querySelector('.js-day').getBoundingClientRect();
+    const { width: rowWidth } = document.querySelector('.calendar__week').getBoundingClientRect();
+    const dayFromIndex = Array.from(allWeeks[indexFrom].querySelectorAll('.js-day')).findIndex(
+      (day) => day.dataset.date === `${this.departureDate}`,
+    );
+    const dayToIndex = Array.from(allWeeks[indexTo].querySelectorAll('.js-day')).findIndex(
+      (day) => day.dataset.date === `${this.returnDate}`,
+    );
+    const startAbs = dayFromIndex * width + dayFromIndex * 4 + 0.5 * width;
+    const startPercent = (startAbs / rowWidth) * 100;
+    const endAbs = dayToIndex * width + dayToIndex * 4 + 0.5 * width + 1;
+    const endPercent = (endAbs / rowWidth) * 100;
+    if (indexFrom === indexTo) {
+      allWeeks[indexTo].setAttribute(
+        'style',
+        `background: linear-gradient(to right, transparent ${startPercent}%, ${highlightColor} ${startPercent}% ${endPercent}%, transparent ${endPercent}%);`,
+      );
+    } else {
+      allWeeks[indexFrom].setAttribute(
+        'style',
+        `background: linear-gradient(to right, transparent ${startPercent}%, ${highlightColor} ${startPercent}%);`,
+      );
+      allWeeks[indexTo].setAttribute(
+        'style',
+        `background: linear-gradient(to right, ${highlightColor} ${endPercent}%, transparent ${endPercent}%);`,
+      );
+      for (let i = indexFrom + 1; i < indexTo; i++) {
+        allWeeks[i].setAttribute('style', `background-color: ${highlightColor}`);
+      }
+    }
+  }
+
+  removeHighlight() {
+    const allWeeks = Array.from(document.querySelectorAll('.calendar__week'));
+    for (let week of allWeeks) {
+      week.setAttribute('style', '');
+    }
   }
 }
