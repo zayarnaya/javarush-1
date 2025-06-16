@@ -18,6 +18,7 @@ class Calendar {
   applyBtn;
   form;
   isOneWay;
+  isMobile;
 
   /**
    * Конструктор
@@ -59,6 +60,10 @@ class Calendar {
     this.form = document.querySelector('.js-calendar-form');
 
     this.isOneWay = this.returnInput.hasAttribute('disabled');
+    this.isMobile = window.innerWidth <= 360;
+    document.addEventListener('resize', () => {
+      this.isMobile = window.innerWidth <= 360;
+    });
   }
 
   /**
