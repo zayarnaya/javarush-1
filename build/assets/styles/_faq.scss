@@ -1,6 +1,8 @@
 .faq {
-  padding: calc(2 * var(--layout-margin)) calc(177px - var(--layout-margin));
-  gap: 40px;
+  .container {
+    padding: calc(2 * var(--layout-margin)) 177px;
+    gap: 40px;
+  }
 }
 
 .faq-accordion {

@@ -3,7 +3,14 @@
   height: 462px;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
 
   &__badges {
     display: flex;

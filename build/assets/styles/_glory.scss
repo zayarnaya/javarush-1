@@ -2,6 +2,10 @@
   padding-top: 8em;
   padding-bottom: 8em;
 
+  .container {
+    gap: 24px;
+  }
+
   &__gallery {
     display: grid;
     width: 100%;

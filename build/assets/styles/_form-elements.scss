@@ -63,13 +63,14 @@ button {
 
   &:disabled {
     background-color: var(--primary-grey);
+    cursor: auto;
   }
 
-  &:focus {
+  &:focus:not(:disabled) {
     background-color: darken(#0578ff, 30%);
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: darken(#0578ff, 10%);
   }
 
@@ -88,11 +89,11 @@ button {
       color: var(--primary-black-50);
     }
 
-    &:focus {
+    &:focus:not(:disabled) {
       background-color: darken(#0578ff, 30%);
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: darken(#0578ff, 10%);
     }
   }

@@ -77,9 +77,15 @@ body {
   width: 100vw;
   min-height: 100vh;
   margin: 0;
-  background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
   overflow-x: hidden;
   min-width: 360px;
+}
+
+.bg {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
 }
 
 section {
@@ -90,6 +96,8 @@ section {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   padding: 0 var(--layout-margin);
   width: 100%;
   max-width: 1440px;
@@ -139,9 +147,10 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: var(--layout-margin);
   background-color: var(--primary-blue);
   --primary-black: var(--white);
+  padding: var(--layout-margin) 0 164px 0;
+  margin-top: -1px;
 }
 .footer__info {
   display: grid;
@@ -192,6 +201,12 @@ ul {
   height: 462px;
   justify-content: center;
   align-items: center;
+}
+.app .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 60px;
 }
 .app__badges {
@@ -239,8 +254,8 @@ ul {
   align-items: center;
 }
 
-.faq {
-  padding: calc(2 * var(--layout-margin)) calc(177px - var(--layout-margin));
+.faq .container {
+  padding: calc(2 * var(--layout-margin)) 177px;
   gap: 40px;
 }
 
@@ -347,11 +362,12 @@ button {
 }
 button:disabled {
   background-color: var(--primary-grey);
+  cursor: auto;
 }
-button:focus {
+button:focus:not(:disabled) {
   background-color: #00316b;
 }
-button:hover {
+button:hover:not(:disabled) {
   background-color: #0060d1;
 }
 button.trip-settings__btn {
@@ -368,10 +384,10 @@ button.trip-settings__btn {
 button.trip-settings__btn:disabled {
   color: var(--primary-black-50);
 }
-button.trip-settings__btn:focus {
+button.trip-settings__btn:focus:not(:disabled) {
   background-color: #00316b;
 }
-button.trip-settings__btn:hover {
+button.trip-settings__btn:hover:not(:disabled) {
   background-color: #0060d1;
 }
 
@@ -467,11 +483,14 @@ input[type='date']:required:focus {
   height: 217px;
   opacity: 1;
 }
+.tips__wrapper.active .tips__background {
+  height: 193px;
+}
 .tips__background {
   background-color: var(--white);
   border-radius: 12px;
   padding: 12px 24px;
-  height: 193px;
+  height: 0;
   overflow-y: auto;
 }
 .tips__list {
@@ -529,7 +548,9 @@ input[type='date']:required:focus {
   z-index: 100;
 }
 .calendar__controls:hover,
-.calendar__controls:focus {
+.calendar__controls:focus,
+.calendar__controls:focus:not(:disabled),
+.calendar__controls:hover:not(:disabled) {
   background-color: var(--grey);
 }
 .calendar__controls:disabled {
@@ -607,11 +628,12 @@ input[type='date']:required:focus {
 .calendar__day:hover {
   background-color: var(--primary-grey-50);
 }
-.calendar__day:focus {
+.calendar__day:focus,
+.calendar__day:focus:not(:disabled) {
   background-color: transparent;
 }
 .calendar__day.selected {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-blue) !important;
 }
 .calendar__day.accent {
   border-radius: 0px;
@@ -660,6 +682,9 @@ input[type='date']:required:focus {
 .glory {
   padding-top: 8em;
   padding-bottom: 8em;
+}
+.glory .container {
+  gap: 24px;
 }
 .glory__gallery {
   display: grid;
@@ -761,6 +786,9 @@ input[type='date']:required:focus {
   margin-left: 35px;
   width: 89%;
 }
+.hero__submit {
+  margin-top: -24px;
+}
 
 .tickets,
 .tickets__form {
@@ -818,8 +846,10 @@ input[type='date']:required:focus {
 
 .section-stats {
   justify-content: space-between;
-  padding: 60px var(--layout-margin);
   background-color: var(--primary-blue);
+}
+.section-stats .container {
+  padding: 60px var(--layout-margin);
 }
 
 .stats__list {

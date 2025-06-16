@@ -1,7 +1,11 @@
 .section-stats {
   justify-content: space-between;
-  padding: 60px var(--layout-margin);
+
   background-color: var(--primary-blue);
+
+  .container {
+    padding: 60px var(--layout-margin);
+  }
 }
 
 .stats {

@@ -38,7 +38,9 @@
     z-index: 100;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus:not(:disabled),
+    &:hover:not(:disabled) {
       background-color: var(--grey);
     }
 

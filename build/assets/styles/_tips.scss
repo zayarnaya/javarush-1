@@ -17,6 +17,10 @@
     &.active {
       height: calc(193px + 24px);
       opacity: 1;
+
+      & .tips__background {
+        height: 193px;
+      }
     }
   }
 
@@ -24,7 +28,7 @@
     background-color: var(--white);
     border-radius: 12px;
     padding: 12px 24px;
-    height: 193px;
+    height: 0;
     overflow-y: auto;
   }
 

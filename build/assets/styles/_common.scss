@@ -40,10 +40,15 @@ body {
   width: 100vw;
   min-height: 100vh;
   margin: 0;
-  // padding: 0px var(--layout-margin);
-  background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
   overflow-x: hidden;
   min-width: 360px;
+}
+
+.bg {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
 }
 
 // main,
@@ -62,6 +67,8 @@ section {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   padding: 0 var(--layout-margin);
   width: 100%;
   max-width: 1440px;
