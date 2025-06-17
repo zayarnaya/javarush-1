@@ -1,19 +1,443 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <title>JAVARUSH1</title>
+    <title>Wonders</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <link rel="shortcut icon" href="favicon.svg" />
-    <link href="style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Find Your Alpine Ride" />
+    <link href="favicon.ico" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="assets/scripts/tips.js"></script>
+    <script src="assets/scripts/validator.js"></script>
+    <script src="assets/scripts/calendar.js"></script>
+    <script src="script.js"></script>
   </head>
   <body>
-    <header>ПРИВЕТ!</header>
-    <main></main>
-    <footer></footer>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <div class="logo">
+            <img class="logo__image" src="./assets/images/logo.svg" width="73" height="34" alt="Wonders logo" />
+            <span class="logo__text">Wonders</span>
+          </div>
+          <nav class="header__nav">
+            <ul class="header__nav-list">
+              <li class="header__nav-list-item">
+                <a class="header__nav-link" href="#app"> Mobile App </a>
+              </li>
+              <li class="header__nav-list-item">
+                <a class="header__nav-link" href="#faq"> FAQs </a>
+              </li>
+              <li class="header__nav-list-item">
+                <a class="header__nav-link" href="#contact"> Contact </a>
+              </li>
+              <li class="header__nav-list-item">
+                <strong><a class="header__nav-link" href="/"> Sign Up </a></strong>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="bg">
+        <section>
+          <div class="container">
+            <div class="hero">
+              <div class="tickets">
+                <h1>Skip The Climbing, Catch The Bus</h1>
+                <form class="tickets__form js-tickets-form" action="bus-list.html" novalidate>
+                  <legend>
+                    We sell tickets to the best seats in the house – houses on wheels, that is! <br />Get ready for
+                    jaw-dropping views without breaking a sweat.
+                  </legend>
+                  <fieldset class="tickets__trip-settings js-radio-group">
+                    <label class="settings__label" for="round"
+                      ><input type="radio" id="round" name="trip-type" value="round" checked />Round trip</label
+                    >
+                    <label class="settings__label" for="one-way"
+                      ><input type="radio" id="one-way" name="trip-type" value="one-way" />One way</label
+                    >
+                    <div class="number__controls">
+                      <button type="button" class="trip-settings__btn js-minus" disabled>-</button
+                      ><input class="js-number" type="number" id="persons" name="persons" value="1" /><button
+                        type="button"
+                        class="trip-settings__btn js-plus"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </fieldset>
+                  <fieldset class="tickets__text-inputs js-inputs">
+                    <label class="tickets__label"
+                      ><p>Departure</p>
+                      <input type="text" id="departure" name="departure" placeholder="Your City/Station" />
+
+                      <div class="tips__placeholder">
+                        <div class="tips__wrapper js-departure-tips">
+                          <div class="tips__background">
+                            <ul class="tips__list js-departure-list"></ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="error-message js-error-message"></div>
+                    </label>
+                    <label class="tickets__label"
+                      ><p>Arrival</p>
+                      <input type="text" id="arrival" name="arrival" placeholder="Where to?" />
+
+                      <div class="tips__placeholder">
+                        <div class="tips__wrapper js-arrival-tips">
+                          <div class="tips__background">
+                            <ul class="tips__list js-arrival-list"></ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="error-message js-error-message"></div>
+                    </label>
+                    <label class="tickets__label"
+                      ><p>Pick your lucky day</p>
+                      <input
+                        class="js-date js-depart-date"
+                        type="date"
+                        required
+                        id="depart"
+                        name="depart"
+                        placeholder="Depart"
+                        value="" />
+                      <div class="error-message js-error-message"></div
+                    ></label>
+                    <label class="tickets__label"
+                      ><p></p>
+                      <input
+                        class="js-date js-return-date"
+                        type="date"
+                        required
+                        id="return"
+                        name="return"
+                        placeholder="Return"
+                        value="" />
+                      <div class="error-message js-error-message"></div
+                    ></label>
+                  </fieldset>
+                  <div class="calendar__placeholder">
+                    <div class="calendar js-calendar hidden">
+                      <div class="calendar__wrapper js-calendar-form">
+                        <button
+                          type="button"
+                          class="calendar__controls calendar__control_prev js-prev"
+                          aria-label="Previous month"
+                          disabled
+                        ></button>
+                        <button
+                          type="button"
+                          class="calendar__controls calendar__control_next js-next"
+                          aria-label="Next month"
+                        ></button>
+                        <div class="calendar__slider">
+                          <div class="calendar__main js-main">
+                            <fieldset class="calendar__field js-calendar-field">
+                              <legend class="js-legend"></legend>
+                              <div class="calendar__grid js-calendar-grid">
+                                <div class="calendar__row calendar__weekdays">
+                                  <span class="calendar__weekday">M</span>
+                                  <span class="calendar__weekday">T</span>
+                                  <span class="calendar__weekday">W</span>
+                                  <span class="calendar__weekday">T</span>
+                                  <span class="calendar__weekday">F</span>
+                                  <span class="calendar__weekday">S</span>
+                                  <span class="calendar__weekday">S</span>
+                                </div>
+                              </div>
+                            </fieldset>
+                            <fieldset class="calendar__field js-calendar-field">
+                              <legend class="js-legend">December</legend>
+                              <div class="calendar__grid js-calendar-grid">
+                                <div class="calendar__row calendar__weekdays">
+                                  <span class="calendar__weekday">M</span>
+                                  <span class="calendar__weekday">T</span>
+                                  <span class="calendar__weekday">W</span>
+                                  <span class="calendar__weekday">T</span>
+                                  <span class="calendar__weekday">F</span>
+                                  <span class="calendar__weekday">S</span>
+                                  <span class="calendar__weekday">S</span>
+                                </div>
+                                <div class="calendar__row calendar__week">
+                                  <button type="button" class="calendar__day">1</button>
+                                </div>
+                              </div>
+                            </fieldset>
+                            <fieldset class="calendar__field">
+                              <legend class="js-legend">December</legend>
+                              <div class="calendar__grid">
+                                <div class="calendar__row calendar__weekdays">
+                                  <span class="calendar__weekday">M</span>
+                                  <span class="calendar__weekday">T</span>
+                                  <span class="calendar__weekday">W</span>
+                                  <span class="calendar__weekday">T</span>
+                                  <span class="calendar__weekday">F</span>
+                                  <span class="calendar__weekday">S</span>
+                                  <span class="calendar__weekday">S</span>
+                                </div>
+                                <div class="calendar__row calendar__week">
+                                  <button type="button" class="calendar__day">1</button>
+                                </div>
+                              </div>
+                            </fieldset>
+                          </div>
+                        </div>
+                        <div class="calendar__footer">
+                          <div class="calendar__buttons">
+                            <button type="button" class="calendar__reset js-reset">Reset</button>
+                            <button type="button" class="calendar__apply btn-blue js-apply">Apply</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="hero__submit btn-blue">Find My Alpine Ride</button>
+                </form>
+              </div>
+
+              <img src="assets/images/photoes/fullsize/Hero.png" alt="Wonders" class="hero__image" />
+            </div>
+          </div>
+        </section>
+        <section class="section-stats">
+          <div class="container">
+            <ul class="stats__list">
+              <li class="stats__list-item">
+                <p class="stats__text-big">68k+</p>
+                <p class="stats__text-small">Track kilometers</p>
+              </li>
+              <li class="stats__list-item">
+                <p class="stats__text-big">1.4M+</p>
+                <p class="stats__text-small">Photos Taken</p>
+              </li>
+              <li class="stats__list-item">
+                <p class="stats__text-big">23M+</p>
+                <p class="stats__text-small">Altitude Gained</p>
+              </li>
+              <li class="stats__list-item">
+                <p class="stats__text-big">165+</p>
+                <p class="stats__text-small">Years of history</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="glory">
+          <div class="container">
+            <h2>Glimpses of Glory</h2>
+            <div class="glory__gallery">
+              <div class="glory__image image-first">
+                <img height="100%" src="assets/images/photoes/fullsize/ing01.png" alt="" />
+              </div>
+              <div class="glory__image image-second">
+                <img height="100%" src="assets/images/photoes/fullsize/ing02.png" alt="" />
+              </div>
+              <div class="glory__image image-third">
+                <img height="100%" src="assets/images/photoes/fullsize/ing03.png" alt="" />
+              </div>
+              <div class="glory__image image-forth">
+                <img width="100%" src="assets/images/photoes/fullsize/ing04.png" alt="" />
+              </div>
+              <div class="glory__image image-fifth">
+                <img width="100%" src="assets/images/photoes/fullsize/ing05.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section class="app" id="app">
+        <div class="container">
+          <h2>Free downloads app now!</h2>
+          <div class="app__badges">
+            <a class="app__link" href="/"
+              ><img class="app__badge" src="assets/images/badges/google-play.svg" alt="download from google play"
+            /></a>
+            <a class="app__link" href="/"
+              ><img class="app__badge" src="assets/images/badges/app-gallery.svg" alt="download from app gallery"
+            /></a>
+            <a class="app__link" href="/"
+              ><img class="app__badge" src="assets/images/badges/app-store.svg" alt="download from app store"
+            /></a>
+          </div>
+        </div>
+      </section>
+      <section class="faq" id="faq">
+        <div class="container">
+          <h2>FAQs.</h2>
+          <div class="faq-accordion">
+            <details open>
+              <summary class="faq-accordion__summary">
+                Alpine Bus Journeys?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                Forget crowded cities! Alpine Bus Journeys are your comfy seat with panoramic windows to breathtaking
+                mountain vistas, charming villages, and air so fresh it might make you yodel (please don't, unless
+                you're outside). It's transportation with a side of unparalleled scenery (and maybe a hairpin turn).
+              </p>
+            </details>
+            <details>
+              <summary class="faq-accordion__summary">
+                What about seating options?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                Generally, you'll find comfy standard seats (great views, great value, maybe great new friends) and
+                perhaps slightly better seats with extra legroom. All offer a front-row seat to the greatest show on
+                Earth – the Alps!
+              </p>
+            </details>
+            <details>
+              <summary class="faq-accordion__summary">
+                What is the Alpine Wallet?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                It's your digital stash of cash that makes booking bus tickets smoother than a perfectly paved mountain
+                road. Load it up and watch your travel dreams become reality faster than a bus goes downhill.
+              </p>
+            </details>
+            <details>
+              <summary class="faq-accordion__summary">
+                My Altitude Score?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                Your loyalty points for cruising the mountain roads! Higher scores might get you priority boarding (less
+                elbowing for the best window seat!) or maybe just bragging rights among fellow peak-passengers who
+                prefer four wheels.
+              </p>
+            </details>
+            <details>
+              <summary class="faq-accordion__summary">
+                Why a Bus Station Fee?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                A small contribution to ensure the station is clean, has reasonably fresh mountain air (filtered from
+                bus fumes), and enough signs pointing you towards your bus, not away from it. Sometimes covers the cost
+                of moving rogue bicycles.
+              </p>
+            </details>
+            <details>
+              <summary class="faq-accordion__summary">
+                Why are buses late?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                Sometimes it's the weather (snow happens!), sometimes a sudden flock of particularly slow-moving sheep
+                on the road, and sometimes the driver just had to stop for a photo of that view. Or maybe they got stuck
+                behind a tractor. Welcome to "Mountain Road Time"!
+              </p>
+            </details>
+            <details>
+              <summary class="faq-accordion__summary">
+                Peak Season Surcharge?
+                <img class="faq-accordion__toggler" src="assets/images/plus.svg" width="24" height="24" />
+              </summary>
+              <p class="faq-accordion__text">
+                It's the little extra you pay to enjoy the authentic experience of sharing breathtaking views with a lot
+                of your closest friends (who you haven't met yet) while strategically placing your bag in the overhead
+                compartment. Guarantees a vibrant, energetic journey!
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="contacts">
+        <div class="container">
+          <div class="contacts__wrapper" id="contact">
+            <h2>Contact us</h2>
+            <div class="contacts__links">
+              <a class="contacts__link" href="tel:419876543210">+41&nbsp;98765&nbsp;43210</a>
+              <a class="contacts__link" href="mailto:hello@peakpasses.eu">hello@peakpasses.eu</a>
+            </div>
+            <div class="contacts__address">
+              <p>Alpenblick Strasse 7,</p>
+              <p>12345 Edelweiss Town, Alps</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__info">
+          <div class="footer__logo">
+            <img
+              class="footer__logo-image"
+              src="assets/images/logo-white.svg"
+              width="73"
+              height="34"
+              alt="Wonders logo"
+            />
+            <span class="footer__logo-text">Wonders</span>
+          </div>
+          <nav class="footer__links">
+            <ul class="footer__links-list">
+              <li class="footer__links-list-item">
+                <a href="/" class="footer__link_main">About</a>
+                <ul class="footer__links-list_inset">
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">How it works</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Featured</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Partnership</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Bussiness Relation</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer__links-list-item">
+                <a href="/" class="footer__link_main">Community</a>
+                <ul class="footer__links-list_inset">
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Events</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Blog</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Podcast</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Invite a friend</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer__links-list-item">
+                <a href="/" class="footer__link_main">Socials</a>
+                <ul class="footer__links-list_inset">
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Discord</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Instagram</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Twitter</a>
+                  </li>
+                  <li class="footer__links-list-item_inset">
+                    <a href="/" class="footer__link">Facebook</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__copyright">
+          <p>English: © <span class="js-copyright">2025</span> Peak Passages.</p>
+          <p>All Rights Reserved (Especially the Window Seats).</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

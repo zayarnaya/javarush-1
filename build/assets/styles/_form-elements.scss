@@ -1,0 +1,190 @@
+fieldset {
+  border: none;
+}
+
+.settings__label {
+  position: relative;
+}
+
+input[type='radio'] {
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+  border: none;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--primary-grey-50);
+    position: absolute;
+    left: -16px;
+    top: 5px;
+  }
+
+  &:checked::before {
+    width: 6px;
+    height: 6px;
+    border: 6px solid var(--primary-blue);
+    background-color: transparent;
+  }
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  border: none;
+}
+
+.btn-blue {
+  border-radius: 10px;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: var(--primary-grey);
+    cursor: auto;
+  }
+
+  &:focus:not(:disabled) {
+    background-color: darken(#0578ff, 30%);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: darken(#0578ff, 10%);
+  }
+}
+
+button {
+  border: none;
+
+  &.trip-settings__btn {
+    border: none;
+    border-radius: 50%;
+    background-color: var(--white);
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--primary-blue);
+
+    &:disabled {
+      color: var(--primary-black-50);
+    }
+
+    &:focus:not(:disabled) {
+      background-color: darken(#0578ff, 30%);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: darken(#0578ff, 10%);
+    }
+  }
+}
+
+input[type='text'],
+input[type='date'] {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  background-color: var(--white);
+  color: var(--primary-black);
+  font-size: 14px;
+  font-weight: 500;
+  /*medium*/
+  line-height: 150%;
+  width: 100%;
+  position: relative;
+}
+
+input[type='text']::placeholder {
+  color: var(--primary-grey);
+}
+
+input[type='text']:disabled,
+input[type='date']:disabled {
+  background-color: var(--primary-blue-10);
+}
+
+input[type='date'] {
+  padding-left: 52px;
+}
+
+input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input[type='date']::after {
+  content: attr(placeholder);
+  position: absolute;
+  left: 52px;
+  top: 18px;
+  color: var(--primary-grey);
+  pointer-events: none;
+}
+
+input[type='date']:required:valid:after,
+input[type='date']:focus:after {
+  content: none;
+}
+
+input[type='date']::before {
+  content: url('./assets/images/Calendar.svg');
+  position: absolute;
+  top: 15px;
+  left: 24px;
+  pointer-events: all;
+}
+
+input[type='date']:required:not(:focus) {
+  color: transparent;
+}
+input[type='date']:required:not(:valid) {
+  color: transparent;
+}
+input[type='date']:required:valid,
+input[type='date']:required:focus {
+  color: var(--primary-black);
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0;
+}
+
+input.invalid:not(:disabled) {
+  border: 1px solid red;
+
+  & ~ .error-message {
+    opacity: 1;
+  }
+}

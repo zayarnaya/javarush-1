@@ -1,0 +1,44 @@
+.header {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 32.5px 0;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: flex-end;
+
+    &-list {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      width: 610px;
+      padding: 0;
+      margin: 0;
+
+      &-item {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    &-link {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  &__text {
+    font-size: 34px;
+  }
+}
