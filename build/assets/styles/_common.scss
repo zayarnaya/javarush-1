@@ -16,10 +16,10 @@
   --white: #fff;
   --highlight: rgba(0, 0, 0, 0.04);
 
-  --layout-margin: 4em;
-  --layout-margin-neg: -4em;
-  --layout-gutter: 2em;
-  --layout-gutter-neg: -2em;
+  --layout-margin: 4rem;
+  --layout-margin-neg: -4rem;
+  --layout-gutter: 2rem;
+  --layout-gutter-neg: -2rem;
   --layout-window: min(100vw, 1440px);
   --layout-col-width: calc((var(--layout-window) + var(--layout-margin-neg) * 2 + var(--layout-gutter-neg) * 11) / 12);
 }
@@ -83,7 +83,7 @@ section {
 
 h1,
 h2 {
-  font-size: 4em;
+  font-size: 4rem;
   font-weight: bold;
   margin: 0;
 }

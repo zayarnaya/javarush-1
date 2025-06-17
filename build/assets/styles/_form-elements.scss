@@ -54,9 +54,9 @@ input[type='number'] {
   border-radius: 10px;
   background-color: var(--primary-blue);
   color: var(--white);
-  padding: 1em 1.5em;
+  padding: 1rem 1.5rem;
   margin: 0;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: bold;
   cursor: pointer;
 
@@ -107,7 +107,7 @@ input[type='text'],
 input[type='date'] {
   border: none;
   border-radius: 10px;
-  padding: 1em 1.5em;
+  padding: 1rem 1.5rem;
   margin: 0;
   background-color: var(--white);
   color: var(--primary-black);
@@ -142,7 +142,7 @@ input[type='date']::after {
   content: attr(placeholder);
   position: absolute;
   left: 52px;
-  top: 12px;
+  top: 18px;
   color: var(--primary-grey);
   pointer-events: none;
 }
@@ -155,8 +155,8 @@ input[type='date']:focus:after {
 input[type='date']::before {
   content: url('./assets/images/Calendar.svg');
   position: absolute;
-  top: 12px;
-  left: 20px;
+  top: 15px;
+  left: 24px;
   pointer-events: all;
 }
 

@@ -2,18 +2,17 @@
   display: grid;
   gap: var(--layout-gutter);
   grid-template-columns: 1fr 1fr;
-  padding: var(--layout-margin) 0 calc(var(--layout-margin) * 2) 0;
+  padding: var(--layout-margin) 0 182px 0;
+  position: relative;
 
   &__image {
-    max-width: 100%;
+    position: absolute;
+    right: 0;
+    max-width: calc(50% + var(--layout-gutter-neg));
     transform: scaleX(-1);
     margin-top: -77px;
     margin-left: 35px;
     width: 89%;
-  }
-
-  &__submit {
-    margin-top: -24px;
   }
 }
 
@@ -21,9 +20,13 @@
 .tickets__form {
   display: flex;
   flex-direction: column;
-  gap: var(--layout-gutter);
 }
 .tickets {
+  h1,
+  legend {
+    margin-bottom: var(--layout-gutter);
+  }
+
   &__trip-settings {
     padding: 0 24px 0 40px;
   }
@@ -36,14 +39,16 @@
     background-color: var(--white);
     border-radius: 10px;
     padding-top: 3px;
+    margin-bottom: 1.5rem;
   }
 
   &__text-inputs {
     display: grid;
-    gap: 24px;
+    column-gap: var(--layout-gutter);
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    // position: relative;
+    align-items: flex-end;
+    margin-bottom: 1rem;
   }
 
   &__label {
@@ -52,6 +57,10 @@
     line-height: 120%;
     font-size: 16px;
     font-weight: 600;
+
+    p {
+      padding-bottom: 16px;
+    }
   }
 }
 
