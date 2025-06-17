@@ -108,7 +108,6 @@ class Calendar {
     this.form.addEventListener('click', (e) => {
       if (e.target?.classList?.contains('js-day')) {
         const { date } = e.target?.dataset;
-        console.log(!!this.departureDate, !!this.returnDate);
         if (!!this.departureDate && date === this.departureDate) {
           this.setDepartureDate('');
         } else if (!!this.returnDate && date === this.returnDate) {
@@ -333,7 +332,7 @@ class Calendar {
     }
     const indexFrom = allWeeks.findIndex((week) => !!week.querySelector(`[data-date="${this.departureDate}"]`));
     const indexTo = allWeeks.findIndex((week) => !!week.querySelector(`[data-date="${this.returnDate}"]`));
-    // console.log(indexFrom, indexTo)
+
     const { width } = document.querySelector('.js-day').getBoundingClientRect();
     const { width: rowWidth } = document.querySelector('.calendar__week').getBoundingClientRect();
     const dayFromIndex = Array.from(allWeeks[indexFrom].querySelectorAll('.calendar__day')).findIndex(

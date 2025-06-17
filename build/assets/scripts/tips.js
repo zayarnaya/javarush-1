@@ -65,6 +65,10 @@ const Stations = [
   'Kranjska Gora Avtobusna Postaja',
 ];
 
+/**
+ * Включалка подсказок для инпута прибытия или отбытия
+ * @param {'arrival' | 'departure'} type - тип инпута (прибытие - отбытие)
+ */
 function inputTips(type) {
   const stationsList = [...Stations];
 
@@ -72,6 +76,10 @@ function inputTips(type) {
   const wrapper = document.querySelector(`.js-${type}-tips`);
   const list = document.querySelector(`.js-${type}-list`);
 
+  /**
+   * Теоретически выключает подсказки, когда выезжаем из зон инпутов и подсказок
+   * @param {Event} e - событие mouseout
+   */
   function detectMouseOut(e) {
     const elements = document.elementsFromPoint(e.clientX, e.clientY);
     if (elements.indexOf(input) < 0 && elements.indexOf(wrapper) < 0) {
@@ -110,6 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
   inputTips('arrival');
 });
 
+/**
+ * Наполняет элемент списка подсказок
+ * @param {Element} list - элемент списка
+ * @param {string[]} array - список подсказок
+ */
 function populateList(list, array) {
   const html = array.map((station) => `<li class="tips__list-item">${station}</li>`).join('');
   list.innerHTML = html;

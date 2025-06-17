@@ -8,6 +8,7 @@
     <link href="favicon.ico" />
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="assets/scripts/tips.js"></script>
+    <script src="assets/scripts/validator.js"></script>
     <script src="assets/scripts/calendar.js"></script>
     <script src="script.js"></script>
   </head>
@@ -45,7 +46,7 @@
             <div class="hero">
               <div class="tickets">
                 <h1>Skip The Climbing, Catch The Bus</h1>
-                <form class="tickets__form" action="bus-list.html">
+                <form class="tickets__form js-tickets-form" action="bus-list.html" novalidate>
                   <legend>
                     We sell tickets to the best seats in the house – houses on wheels, that is! <br />Get ready for
                     jaw-dropping views without breaking a sweat.
@@ -75,6 +76,7 @@
                         name="departure"
                         placeholder="Your City/Station"
                       />
+
                       <div class="tips__placeholder">
                         <div class="tips__wrapper js-departure-tips">
                           <div class="tips__background">
@@ -82,6 +84,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="error-message js-error-message"></div>
                     </label>
                     <label class="tickets__label"
                       >Arrival&nbsp;<br />&nbsp;<input
@@ -90,6 +93,7 @@
                         name="arrival"
                         placeholder="Where to?"
                       />
+
                       <div class="tips__placeholder">
                         <div class="tips__wrapper js-arrival-tips">
                           <div class="tips__background">
@@ -97,6 +101,7 @@
                           </div>
                         </div>
                       </div>
+                      <div class="error-message js-error-message"></div>
                     </label>
                     <label class="tickets__label"
                       >Pick your lucky day<br />&nbsp;<input
@@ -106,8 +111,9 @@
                         id="depart"
                         name="depart"
                         placeholder="Depart"
-                        value=""
-                    /></label>
+                        value="" />
+                      <div class="error-message js-error-message"></div
+                    ></label>
                     <label class="tickets__label"
                       >&nbsp;<br />&nbsp;<input
                         class="js-date js-return-date"
@@ -116,8 +122,9 @@
                         id="return"
                         name="return"
                         placeholder="Return"
-                        value=""
-                    /></label>
+                        value="" />
+                      <div class="error-message js-error-message"></div
+                    ></label>
                   </fieldset>
                   <div class="calendar__placeholder">
                     <div class="calendar js-calendar hidden">

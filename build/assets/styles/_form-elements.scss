@@ -170,3 +170,21 @@ input[type='date']:required:valid,
 input[type='date']:required:focus {
   color: var(--primary-black);
 }
+
+.error-message {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0;
+}
+
+input.invalid:not(:disabled) {
+  border: 1px solid red;
+
+  & ~ .error-message {
+    opacity: 1;
+  }
+}

@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // и включаем, если в обе
   radioGroup.addEventListener('change', (e) => toggleReturnDateInput(e, returnDate));
 
-  // // устанавливаем минимальную дату
-  // // update: путаница в форматах, обойдемся
-  // // сделаем кастомную валидацию
-  // const today = getTodayDate();
-  // setMinDate(today, departDate);
-  // setMinDate(today, returnDate);
-  // // меняем минимальную дату у инпута даты возвращения, если выбрана дата отбытия
-  // departDate.addEventListener('change', (e) => setMinDate(e.currentTarget.value, returnDate));
+  // устанавливаем минимальную дату
+  // update: путаница в форматах, обойдемся
+  // сделаем кастомную валидацию
+  const today = getTodayDate();
+  setMinDate(today, departDate);
+  setMinDate(today, returnDate);
+  // меняем минимальную дату у инпута даты возвращения, если выбрана дата отбытия
+  departDate.addEventListener('change', (e) => setMinDate(e.currentTarget.value, returnDate));
 
   // управление количеством людей
   const incBtn = document.querySelector('.js-plus');
@@ -56,6 +56,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.js-return-date').addEventListener('change', (e) => {
     calendar.setReturnDate(e.currentTarget.value);
   });
+
+  // инициализируем валидатор формы
+  const form = document.querySelector('.js-tickets-form');
+  const validator = new Validator(form);
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    validator.validateForm();
+    if (form.classList.contains('invalid')) {
+      return;
+    } else {
+      window.location.pathname = form.getAttribute('action');
+    }
+  });
+  for (let input of form.querySelectorAll('input[type="text"]')) {
+    input.addEventListener('focus', (e) => {
+      if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid');
+    });
+  }
+  for (let input of form.querySelectorAll('input[type="date"]')) {
+    input.addEventListener('focus', (e) => {
+      if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid');
+    });
+  }
 });
 
 // вспомогательные функции
