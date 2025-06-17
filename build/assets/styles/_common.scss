@@ -1,5 +1,6 @@
 :root {
   --breakpoint-l: 1440px;
+  --breakpoint-touch: 1200px;
   --breakpoint-m: 768px;
   --breakpoint-s: 360px;
 
@@ -35,6 +36,10 @@
   padding: 0;
   transition: 0.3s;
 }
+
+// * {
+//   outline: solid red;
+// }
 
 body {
   width: 100vw;
@@ -100,11 +105,11 @@ ul {
   display: none;
 }
 
-@media screen and (min-width: 768) and (max-width: 1439px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   :root {
-    --layout-margin: 32px;
-    --layout-gutter: 24px;
-    --layout-col-width: calc(100vw - var(--layout-margin) * 2 - var(--layout-gutter) * 5);
+    --layout-margin: 2rem;
+    --layout-gutter: 1.5rem;
+    --layout-col-width: calc(100vw - var(--layout-margin) * 2 - var(--layout-gutter) * 5) / 6;
   }
 }
 
