@@ -4,12 +4,21 @@
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 1199px) {
+    height: 509px;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 60px;
+
+    @media screen and (max-width: 1199px) {
+      gap: 2rem;
+    }
   }
 
   &__badges {
@@ -17,9 +26,19 @@
     width: 863px;
     min-width: calc(var(--breakpoint-m) + 1px + 2 * var(--layout-margin-neg));
     justify-content: space-between;
+
+    @media screen and (max-width: 1199px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__badge {
     height: 65px;
+  }
+
+  &__link:first-of-type {
+    @media screen and (max-width: 1199px) {
+      width: 100%;
+    }
   }
 }
