@@ -1,17 +1,29 @@
 .contacts {
-  background-color: var(--primary-blue);
-  height: 404px;
-  margin-top: 100px;
+  padding-top: calc(var(--layout-margin) * 2);
+
+  &__empty {
+    height: 121px;
+  }
+
+  &__colored {
+    background-color: var(--primary-blue);
+    height: 404px;
+  }
 
   &__wrapper {
     width: 640px;
     border: 1px solid var(--primary-black-50);
     border-radius: 10px;
     gap: 30px;
-    transform: translateY(-30%);
+    transform: translateY(-121px);
     background-color: var(--white);
     padding: 60px 30px;
     margin: 0 auto;
+
+    @media screen and (max-width: 1199px) {
+      width: unset;
+      min-width: 464px;
+    }
   }
 
   &__links {

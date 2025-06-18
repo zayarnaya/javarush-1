@@ -3,10 +3,11 @@
   <head>
     <title>Wonders</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Find Your Alpine Ride" />
     <link href="favicon.ico" />
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="assets/scripts/hamburger.js"></script>
     <script src="assets/scripts/tips.js"></script>
     <script src="assets/scripts/validator.js"></script>
     <script src="assets/scripts/calendar.js"></script>
@@ -20,7 +21,14 @@
             <img class="logo__image" src="./assets/images/logo.svg" width="73" height="34" alt="Wonders logo" />
             <span class="logo__text">Wonders</span>
           </div>
-          <nav class="header__nav">
+          <div class="header__hamburger">
+            <button class="header__toggler js-nav-toggler" aria-label="Toggle menu">
+              <div class="line1" aria-hidden></div>
+              <div class="line2" aria-hidden></div>
+              <div class="line3" aria-hidden></div>
+            </button>
+          </div>
+          <nav class="header__nav js-header-nav">
             <ul class="header__nav-list">
               <li class="header__nav-list-item">
                 <a class="header__nav-link" href="#app"> Mobile App </a>
@@ -32,7 +40,7 @@
                 <a class="header__nav-link" href="#contact"> Contact </a>
               </li>
               <li class="header__nav-list-item">
-                <strong><a class="header__nav-link" href="/"> Sign Up </a></strong>
+                <a class="header__nav-link" href="/"> Sign Up </a>
               </li>
             </ul>
           </nav>
@@ -348,17 +356,20 @@
           </div>
         </div>
       </section>
-      <section class="contacts">
-        <div class="container">
-          <div class="contacts__wrapper" id="contact">
-            <h2>Contact us</h2>
-            <div class="contacts__links">
-              <a class="contacts__link" href="tel:419876543210">+41&nbsp;98765&nbsp;43210</a>
-              <a class="contacts__link" href="mailto:hello@peakpasses.eu">hello@peakpasses.eu</a>
-            </div>
-            <div class="contacts__address">
-              <p>Alpenblick Strasse 7,</p>
-              <p>12345 Edelweiss Town, Alps</p>
+      <section class="contacts" id="contact">
+        <div class="contacts__empty"></div>
+        <div class="contacts__colored">
+          <div class="container">
+            <div class="contacts__wrapper">
+              <h2>Contact us</h2>
+              <div class="contacts__links">
+                <a class="contacts__link" href="tel:419876543210">+41&nbsp;98765&nbsp;43210</a>
+                <a class="contacts__link" href="mailto:hello@peakpasses.eu">hello@peakpasses.eu</a>
+              </div>
+              <div class="contacts__address">
+                <p>Alpenblick Strasse 7,</p>
+                <p>12345 Edelweiss Town, Alps</p>
+              </div>
             </div>
           </div>
         </div>

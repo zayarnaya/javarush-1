@@ -5,6 +5,12 @@
   padding: var(--layout-margin) 0 182px 0;
   position: relative;
 
+  @media screen and (max-width: 1199px) {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    padding-bottom: 128px;
+  }
+
   &__image {
     position: absolute;
     right: 0;
@@ -13,6 +19,10 @@
     margin-top: -77px;
     margin-left: 35px;
     width: 89%;
+
+    @media screen and (max-width: 1199px) {
+      display: none;
+    }
   }
 }
 

@@ -1,7 +1,11 @@
 .faq {
   .container {
-    padding: calc(2 * var(--layout-margin)) 177px;
+    padding: calc(2 * var(--layout-margin)) 177px 0 177px;
     gap: 40px;
+
+    @media screen and (max-width: 1199px) {
+      padding: calc(2 * var(--layout-margin)) var(--layout-margin);
+    }
   }
 }
 
