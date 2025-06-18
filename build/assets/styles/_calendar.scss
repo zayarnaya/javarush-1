@@ -81,6 +81,10 @@
     padding: 0 8px;
     flex-shrink: 0;
 
+    @media screen and (max-width: 1199px) {
+      width: 270px;
+    }
+
     legend {
       display: block;
       text-align: center;

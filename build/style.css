@@ -656,6 +656,11 @@ input.invalid:not(:disabled) ~ .error-message {
   padding: 0 8px;
   flex-shrink: 0;
 }
+@media screen and (max-width: 1199px) {
+  .calendar__field {
+    width: 270px;
+  }
+}
 .calendar__field legend {
   display: block;
   text-align: center;

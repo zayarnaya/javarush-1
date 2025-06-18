@@ -19,6 +19,7 @@ class Calendar {
   form;
   isOneWay;
   isMobile;
+  isTablet;
 
   /**
    * Конструктор
@@ -60,9 +61,11 @@ class Calendar {
     this.form = document.querySelector('.js-calendar-form');
 
     this.isOneWay = this.returnInput.hasAttribute('disabled');
+    this.isTablet = window.innerWidth > 360 && window.innerWidth < 1200;
     this.isMobile = window.innerWidth <= 360;
     document.addEventListener('resize', () => {
       this.isMobile = window.innerWidth <= 360;
+      this.isTablet = window.innerWidth > 360 && window.innerWidth < 1200;
     });
   }
 
@@ -171,7 +174,7 @@ class Calendar {
 
   _slide() {
     const { width } = document.querySelector('.js-calendar-field').getBoundingClientRect();
-    const gap = 32;
+    const gap = this.isTablet ? 24 : this.isMobile ? 24 : 32;
     this.wrapper?.setAttribute('style', `left: -${this.monthLeftIndex * (width + gap)}px`);
   }
 
