@@ -43,6 +43,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--layout-gutter);
     width: 100%;
+
+    @media screen and (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__links-list-item {
@@ -65,5 +69,17 @@
     line-height: 150%;
     letter-spacing: -2%;
     font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  &__copyright {
+    font-weight: 600;
+
+    @media screen and (max-width: 767px) {
+      letter-spacing: -0.4px;
+
+      p {
+        display: inline;
+      }
+    }
   }
 }

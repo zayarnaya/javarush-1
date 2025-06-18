@@ -50,6 +50,12 @@
     border-radius: 10px;
     padding-top: 3px;
     margin-bottom: 1.5rem;
+
+    @media screen and (max-width: 767px) {
+      flex-wrap: wrap;
+      gap: 10px;
+      height: unset;
+    }
   }
 
   &__text-inputs {
@@ -59,6 +65,13 @@
     grid-template-rows: 1fr 1fr;
     align-items: flex-end;
     margin-bottom: 1rem;
+
+    @media screen and (max-width: 767px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: unset;
+      gap: 10px;
+      height: unset;
+    }
   }
 
   &__label {
@@ -81,6 +94,10 @@
   padding: 2px 0;
   font-size: 14px;
   line-height: 24px;
+
+  @media screen and (max-width: 767px) {
+    width: 40%;
+  }
 }
 
 .number__controls {

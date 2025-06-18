@@ -91,6 +91,10 @@
         justify-content: flex-start;
       }
 
+      @media screen and (max-width: 767px) {
+        gap: 64px;
+      }
+
       &-item {
         list-style: none;
         padding: 0;
@@ -110,6 +114,10 @@
       @media screen and (max-width: 1199px) {
         font-size: 48px;
         color: white;
+      }
+
+      @media screen and (max-width: 1199px) {
+        font-size: 32px;
       }
     }
   }

@@ -91,6 +91,10 @@ h2 {
   font-size: 4rem;
   font-weight: bold;
   margin: 0;
+
+  @media screen and (max-width: 767px) {
+    font-size: 2rem;
+  }
 }
 
 a {
