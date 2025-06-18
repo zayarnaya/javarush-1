@@ -19,6 +19,11 @@
     background-color: var(--white);
     padding: 60px 30px;
     margin: 0 auto;
+
+    @media screen and (max-width: 1199px) {
+      width: unset;
+      min-width: 464px;
+    }
   }
 
   &__links {

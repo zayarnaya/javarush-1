@@ -6,6 +6,10 @@
 
   @media screen and (max-width: 1199px) {
     height: 509px;
+
+    h2 {
+      font-size: 40px;
+    }
   }
 
   .container {
@@ -29,6 +33,8 @@
 
     @media screen and (max-width: 1199px) {
       flex-wrap: wrap;
+      width: 462px;
+      min-width: unset;
     }
   }
 
@@ -39,6 +45,7 @@
   &__link:first-of-type {
     @media screen and (max-width: 1199px) {
       width: 100%;
+      margin-bottom: 30px;
     }
   }
 }
