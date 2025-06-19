@@ -2,50 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // устанавливаем год в футере
   setCopyrightYear('js-copyright');
 
-  const radioGroup = document.querySelector('.js-radio-group');
-  const departDate = document.querySelector('.js-depart-date');
-  const returnDate = document.querySelector('.js-return-date');
-
-  // отключаем выбор даты возвращения, если поездка в одну сторону
-  // и включаем, если в обе
-  radioGroup.addEventListener('change', (e) => toggleReturnDateInput(e, returnDate));
-
-  // устанавливаем минимальную дату
-  // update: путаница в форматах, обойдемся
-  // сделаем кастомную валидацию
-  const today = getTodayDate();
-  setMinDate(today, departDate);
-  setMinDate(today, returnDate);
-  // меняем минимальную дату у инпута даты возвращения, если выбрана дата отбытия
-  departDate.addEventListener('change', (e) => setMinDate(e.currentTarget.value, returnDate));
-
-  // управление количеством людей
-  const incBtn = document.querySelector('.js-plus');
-  const decBtn = document.querySelector('.js-minus');
-  const persons = document.querySelector('.js-number');
-
-  incBtn.addEventListener('click', () => incrementPersons(persons, decBtn));
-  decBtn.addEventListener('click', () => decrementPersons(persons, decBtn));
-
-  // инпут даты
-  // открываем календарь при клике в область календарика
-  const calendarPopup = document.querySelector('.js-calendar');
-  const dateInputs = document.querySelectorAll('.js-date');
-  dateInputs.forEach((input) =>
-    input.addEventListener('click', (e) => {
-      const { x, y } = e.target?.getBoundingClientRect();
-      const { clientX, clientY } = e;
-      if (clientX <= x + 50 && clientY <= y + 50) {
-        showElement(calendarPopup);
-      }
-    }),
-  );
-
-  // закрываем календарь при клике на любую область страницы, кроме инпутов даты
-  document.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('js-date') && !e.target.closest('.js-calendar')) hideElement(calendarPopup);
-  });
-
   // инициализируем календарь
   const calendar = new Calendar('.js-depart-date', '.js-return-date');
   calendar.init();
@@ -55,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.querySelector('.js-return-date').addEventListener('change', (e) => {
     calendar.setReturnDate(e.currentTarget.value);
+  });
+
+  // закрываем календарь при клике на любую область страницы, кроме инпутов даты
+  document.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('js-date') && !e.target.closest('.js-calendar')) hideElement(calendarPopup);
   });
 
   // инициализируем валидатор формы
@@ -80,6 +41,65 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid');
     });
   }
+
+  // Обработчики поля настроек поездки
+  const radioGroup = document.querySelector('.js-radio-group');
+  const departDate = document.querySelector('.js-depart-date');
+  const returnDate = document.querySelector('.js-return-date');
+
+  // отключаем выбор даты возвращения, если поездка в одну сторону
+  // и включаем, если в обе
+  radioGroup.addEventListener('change', (e) => {
+    toggleReturnDateInput(e, returnDate);
+    calendar.setIsOneWay(!!document.getElementById('one-way')?.checked);
+  });
+
+  // устанавливаем минимальную дату
+  // update: путаница в форматах, обойдемся
+  // сделаем кастомную валидацию
+  const today = getTodayDate();
+  setMinDate(today, departDate);
+  setMinDate(today, returnDate);
+  // меняем минимальную дату у инпута даты возвращения, если выбрана дата отбытия
+  departDate.addEventListener('change', (e) => setMinDate(e.currentTarget.value, returnDate));
+
+  // управление количеством людей
+  const incBtn = document.querySelector('.js-plus');
+  const decBtn = document.querySelector('.js-minus');
+  const persons = document.querySelector('.js-number');
+
+  incBtn.addEventListener('click', () => incrementPersons(persons, decBtn));
+  decBtn.addEventListener('click', () => decrementPersons(persons, decBtn));
+
+  // инпут даты
+  // открываем календарь при клике в область календарика
+  const calendarPopup = document.querySelector('.js-calendar');
+  const dateInputs = document.querySelectorAll('.js-date');
+
+  dateInputs.forEach((input) =>
+    input.addEventListener('click', (e) => {
+      const { x, y } = e.target?.getBoundingClientRect();
+      const { clientX, clientY } = e;
+      if (clientX <= x + 50 && clientY <= y + 50) {
+        e.currentTarget.blur();
+        showElement(calendarPopup);
+      }
+    }),
+  );
+
+  // меняем отображение выбранной даты
+
+  dateInputs.forEach((input) => {
+    input.addEventListener('change', (e) => {
+      console.log(e.currentTarget.value);
+      const date = new Date(e.currentTarget.value).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        year: 'numeric',
+        month: 'long',
+      });
+      if (date.toLowerCase() !== 'invalid date') input.setAttribute('data-appearance', date);
+    });
+  });
 });
 
 // вспомогательные функции
@@ -135,7 +155,7 @@ function showElement(element) {
 }
 
 /**
- * Включает видимость элемента
+ * Выключает видимость элемента
  * @param {Element} element - выбранный элемент
  */
 

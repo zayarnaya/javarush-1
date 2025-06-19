@@ -54,6 +54,7 @@ class Calendar {
     this.setReturnDate = this.setReturnDate.bind(this);
     this.reset = this.reset.bind(this);
     this.apply = this.apply.bind(this);
+    this.setIsOneWay = this.setIsOneWay.bind(this);
 
     this.wrapper = document.querySelector('.js-main');
     this.nextBtn = document.querySelector('.js-next');
@@ -70,6 +71,16 @@ class Calendar {
       this.isMobile = window.innerWidth < 768;
       this.isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
     });
+  }
+
+  /**
+   * Публичный метод, доступный из инстанса
+   * Устанавливает значение флага "поездка в одну сторону"
+   * @param {boolean} flag - true, если это поездка в одну сторону
+   */
+
+  setIsOneWay(flag) {
+    this.isOneWay = flag;
   }
 
   /**
@@ -355,8 +366,13 @@ class Calendar {
    */
 
   apply() {
+    const changeEvent = new Event('change', { bubbles: true });
     this.departInput.value = this.departureDate;
-    if (!this.isOneWay) this.returnInput.value = this.returnDate;
+    this.departInput.dispatchEvent(changeEvent); // чтобы изменения отобразились текстом
+    if (!this.isOneWay) {
+      this.returnInput.value = this.returnDate;
+      this.returnInput.dispatchEvent(changeEvent);
+    }
     this.close();
   }
 
