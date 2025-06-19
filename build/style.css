@@ -147,6 +147,7 @@ ul {
   :root {
     --layout-margin: 20px;
     --layout-gutter: 20px;
+    --layout-gutter-neg: -20px;
     --layout-col-width: calc(100vw - var(--layout-margin) * 2);
   }
 }
@@ -646,6 +647,19 @@ input.invalid:not(:disabled) ~ .error-message {
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
   position: absolute;
 }
+@media screen and (max-width: 767px) {
+  .calendar {
+    position: fixed;
+    width: 100vw;
+    max-width: 360px;
+    top: 5px;
+    left: calc((100vw - 360px) / 2);
+    padding: 24px 48px;
+    z-index: 1500;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+}
 .calendar__placeholder {
   position: relative;
   width: 100%;
@@ -690,6 +704,11 @@ input.invalid:not(:disabled) ~ .error-message {
 .calendar__control_next {
   right: 15px;
 }
+@media screen and (max-width: 767px) {
+  .calendar__control_next {
+    top: 314px;
+  }
+}
 .calendar__slider {
   width: 100%;
   overflow: hidden;
@@ -700,6 +719,15 @@ input.invalid:not(:disabled) ~ .error-message {
   gap: var(--layout-gutter);
   padding: 0 8px;
   position: relative;
+}
+@media screen and (max-width: 767px) {
+  .calendar__main {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    gap: 0;
+    padding: 0;
+  }
 }
 .calendar__field {
   display: flex;
@@ -712,6 +740,11 @@ input.invalid:not(:disabled) ~ .error-message {
 @media screen and (max-width: 1199px) {
   .calendar__field {
     width: 270px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .calendar__field {
+    width: 264px;
   }
 }
 .calendar__field legend {

@@ -1,6 +1,7 @@
 class Calendar {
   _today;
   year;
+  month;
   months = [];
   monthLeftIndex;
   maxLeftIndex;
@@ -32,7 +33,8 @@ class Calendar {
   constructor(departSelector, returnSelector, options) {
     this._today = new Date();
     this.year = this._today.getFullYear();
-    this.months.push(this._today.getMonth() + 1, this._incrementMonth(this._today.getMonth() + 1));
+    this.month = this._today.getMonth();
+    this.months.push(this.month + 1, this._incrementMonth(this.month + 1));
     this.monthLeftIndex = 0;
     this.maxLeftIndex = options?.max ?? 15;
     this.departInput = document.querySelector(departSelector);
@@ -61,11 +63,12 @@ class Calendar {
     this.form = document.querySelector('.js-calendar-form');
 
     this.isOneWay = this.returnInput.hasAttribute('disabled');
-    this.isTablet = window.innerWidth > 360 && window.innerWidth < 1200;
-    this.isMobile = window.innerWidth <= 360;
+    this.isMobile = window.innerWidth < 768;
+    this.isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+
     document.addEventListener('resize', () => {
-      this.isMobile = window.innerWidth <= 360;
-      this.isTablet = window.innerWidth > 360 && window.innerWidth < 1200;
+      this.isMobile = window.innerWidth < 768;
+      this.isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
     });
   }
 
@@ -131,11 +134,11 @@ class Calendar {
   }
 
   /**
-   * Публичный метод, доступен из инстанса
-   * Перелистывает календарь вперед
+   * Генерирует и рендерит следующий месяц,
+   * выключает кнопку перелистывания, если достигнут лимит
    */
 
-  slideToNext() {
+  _makeNextMonth() {
     if (this.monthLeftIndex === 0) {
       this.prevBtn.removeAttribute('disabled');
     }
@@ -148,6 +151,31 @@ class Calendar {
     }
 
     this.wrapper.appendChild(this._makeMonthCalendarNode(this.year, this.months.at(-1)));
+  }
+
+  /**
+   * Модифицирует индекс на предмет сколько месяцев отсчитать обратно
+   */
+
+  _countPrevMonth() {
+    if (this.monthLeftIndex >= this.maxLeftIndex) {
+      this.nextBtn.removeAttribute('disabled');
+    }
+    this.monthLeftIndex--;
+    if (this.monthLeftIndex === 0) {
+      this.prevBtn.setAttribute('disabled', true);
+    }
+  }
+
+  /**
+   * Публичный метод, доступен из инстанса
+   * Перелистывает календарь вперед
+   */
+
+  slideToNext() {
+    this._makeNextMonth();
+    if (this.isMobile) this._makeNextMonth();
+
     this._slide();
   }
 
@@ -157,13 +185,8 @@ class Calendar {
    */
 
   slideToPrev() {
-    if (this.monthLeftIndex >= this.maxLeftIndex) {
-      this.nextBtn.removeAttribute('disabled');
-    }
-    this.monthLeftIndex--;
-    if (this.monthLeftIndex === 0) {
-      this.prevBtn.setAttribute('disabled', true);
-    }
+    this._countPrevMonth();
+    if (this.isMobile) this._countPrevMonth();
     this._slide();
   }
 
@@ -174,8 +197,9 @@ class Calendar {
 
   _slide() {
     const { width } = document.querySelector('.js-calendar-field').getBoundingClientRect();
-    const gap = this.isTablet ? 24 : this.isMobile ? 24 : 32;
-    this.wrapper?.setAttribute('style', `left: -${this.monthLeftIndex * (width + gap)}px`);
+    const gap = this.isTablet ? 24 : this.isMobile ? 0 : 32;
+    const shift = this.isMobile ? Math.floor(this.monthLeftIndex / 2) : this.monthLeftIndex;
+    this.wrapper?.setAttribute('style', `left: -${shift * (width + gap)}px`);
   }
 
   /**
@@ -186,10 +210,16 @@ class Calendar {
    */
 
   _makeMonthCalendarNode(year, month) {
-    const node = this.template.cloneNode(true);
-    const date = new Date(`${year}-${month}-01`);
+    const node = this.template.cloneNode(true); // клонируем шаблон месяца
+    const date = new Date(`${year}-${month}-01`); // создаем объект даты первого дня месяца
+
+    // выносим название месяца в заголовок
     node.querySelector('.js-legend').textContent = `${date.toLocaleDateString('en', { month: 'long' })} ${year}`;
+
+    // определяем день недели для первого дня месяца
     const startDayIndex = date.getDay() > 0 ? date.getDay() : 6;
+
+    // собираем матрицу с датами
     const monthMatrix = [];
     let index = 1;
     for (let i = 0; i < 7; i++) {
@@ -203,6 +233,7 @@ class Calendar {
       if (index > this.monthsDays[month]) break;
     }
 
+    // формируем из матрицы дат календарик
     let html = '';
     for (let i = 0; i < monthMatrix.length; i++) {
       let inner = '<div class="calendar__row calendar__week">';
@@ -213,7 +244,19 @@ class Calendar {
       }
       html = html + inner + '</div>';
     }
+
+    // вставляем html календарика
     node.querySelector('.js-calendar-grid').innerHTML += html;
+
+    // если это текущий месяц, то ставим disabled на кнопки с датами раньше, чем сегодня
+    if (month === this.month + 1) {
+      const minDate = this._today.toISOString().slice(0, 10);
+      for (let day of node.querySelectorAll('.js-day')) {
+        if (day.dataset.date < minDate) {
+          day.setAttribute('disabled', true);
+        } else break;
+      }
+    }
     return node;
   }
 
@@ -298,7 +341,7 @@ class Calendar {
   /**
    * Сбрасывает выбор дат
    */
-  // TODO добавить чтобы из инпутов тоже сбрасывало
+  // решила не делать сброс из инпутов
   reset() {
     this.setReturnDate('');
     this.setDepartureDate('');
@@ -308,6 +351,7 @@ class Calendar {
 
   /**
    * Применяет изменения и закрывает всплывашку
+   * Публичный метод
    */
 
   apply() {
@@ -318,12 +362,18 @@ class Calendar {
 
   /**
    * Закрывает всплывашку
+   * Публичный метод
    */
 
   close() {
     // некрасивое, но пока так
     document.querySelector('.js-calendar').classList.add('hidden');
   }
+
+  /**
+   * Подсвечивает дате между начальной и конечной
+   * Публичный метод
+   */
 
   highlight() {
     // const rowFrom = document.querySelector(`[data-date=${this.departureDate}]`).closest('.calendar__week');
@@ -367,6 +417,11 @@ class Calendar {
       }
     }
   }
+
+  /**
+   * Убирает подсветку с дат
+   * Публичный метод
+   */
 
   removeHighlight() {
     const allWeeks = Array.from(document.querySelectorAll('.calendar__week'));
