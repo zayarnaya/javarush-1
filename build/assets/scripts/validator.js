@@ -1,6 +1,11 @@
 class Validator {
   _form;
   _inputs;
+
+  /**
+   * Конструктор валидатора формы
+   * @param {Element} form - элемент формы
+   */
   constructor(form) {
     this._form = form;
     this._inputs = Array.from(this._form.elements);

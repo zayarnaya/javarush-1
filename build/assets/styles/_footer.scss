@@ -61,6 +61,10 @@
     line-height: 300%;
     letter-spacing: -2%;
     font-family: 'Plus Jakarta Sans', sans-serif;
+
+    &:hover {
+      color: var(--white-50);
+    }
   }
 
   &__link_main {
@@ -69,6 +73,10 @@
     line-height: 150%;
     letter-spacing: -2%;
     font-family: 'Plus Jakarta Sans', sans-serif;
+
+    &:hover {
+      color: var(--white-50);
+    }
   }
 
   &__copyright {

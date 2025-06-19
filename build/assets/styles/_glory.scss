@@ -30,6 +30,10 @@
     justify-content: center;
     border-radius: 10px;
     overflow: hidden;
+
+    &:hover {
+      transform: scale(1.01, 1.01);
+    }
   }
 }
 

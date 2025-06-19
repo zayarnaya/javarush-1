@@ -54,6 +54,7 @@
   --gradient-white: #f5f5f5;
   --gradient-blue: #ddecff;
   --white: #fff;
+  --white-50: rgba(255, 255, 255, 0.5);
   --highlight: rgba(0, 0, 0, 0.04);
   --layout-margin: 4rem;
   --layout-margin-neg: -4rem;
@@ -210,12 +211,18 @@ ul {
   letter-spacing: -2%;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+.footer__link:hover {
+  color: var(--white-50);
+}
 .footer__link_main {
   font-weight: 600;
   font-size: 20px;
   line-height: 150%;
   letter-spacing: -2%;
   font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.footer__link_main:hover {
+  color: var(--white-50);
 }
 .footer__copyright {
   font-weight: 600;
@@ -512,10 +519,13 @@ input[type='date'] {
   color: var(--primary-black);
   font-size: 14px;
   font-weight: 500;
-  /*medium*/
   line-height: 150%;
   width: 100%;
   position: relative;
+}
+input[type='text']:focus,
+input[type='date']:focus {
+  outline: 1px solid var(--primary-blue);
 }
 
 input[type='text']::-moz-placeholder {
@@ -550,7 +560,11 @@ input[type='date']::after {
   pointer-events: none;
 }
 
-input[type='date']:required:valid:after,
+input[type='date']:required:valid:not(:focus)::after {
+  content: attr(data-appearance);
+  color: var(--primary-black);
+}
+
 input[type='date']:focus:after {
   content: none;
 }
@@ -563,15 +577,12 @@ input[type='date']::before {
   pointer-events: all;
 }
 
-input[type='date']:required:not(:focus) {
+input[type='date']:required:not(:focus),
+input[type='date']:required:not(:valid),
+input[type='date']:required:valid {
   color: transparent;
 }
 
-input[type='date']:required:not(:valid) {
-  color: transparent;
-}
-
-input[type='date']:required:valid,
 input[type='date']:required:focus {
   color: var(--primary-black);
 }
@@ -587,7 +598,7 @@ input[type='date']:required:focus {
 }
 
 input.invalid:not(:disabled) {
-  border: 1px solid red;
+  outline: 1px solid red;
 }
 input.invalid:not(:disabled) ~ .error-message {
   opacity: 1;
@@ -876,6 +887,9 @@ input.invalid:not(:disabled) ~ .error-message {
   border-radius: 10px;
   overflow: hidden;
 }
+.glory__image:hover {
+  transform: scale(1.01, 1.01);
+}
 
 .image-first,
 .image-second {
@@ -1102,6 +1116,9 @@ input.invalid:not(:disabled) ~ .error-message {
 .header__nav-link {
   font-size: 20px;
   line-height: 26px;
+}
+.header__nav-link:hover {
+  color: #4d4d4d;
 }
 @media screen and (max-width: 1199px) {
   .header__nav-link {
