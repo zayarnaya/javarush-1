@@ -15,6 +15,7 @@
   --gradient-white: #f5f5f5;
   --gradient-blue: #ddecff;
   --white: #fff;
+  --white-50: rgba(255, 255, 255, 0.5);
   --highlight: rgba(0, 0, 0, 0.04);
 
   --layout-margin: 4rem;
@@ -25,9 +26,6 @@
   --layout-col-width: calc((var(--layout-window) + var(--layout-margin-neg) * 2 + var(--layout-gutter-neg) * 11) / 12);
 }
 
-/*TODO: ввести обертку контейнер,
-посмотреть и привести в соответствие на больших разрешениях */
-
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -36,10 +34,6 @@
   padding: 0;
   transition: 0.3s;
 }
-
-// * {
-//   outline: solid red;
-// }
 
 body {
   width: 100vw;
@@ -55,14 +49,6 @@ body {
   padding: 0;
   background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
 }
-
-// main,
-// section {
-//   width: 100%;
-//   max-width: 1440px;
-//   padding: 0;
-//   margin: 0 auto;
-// }
 
 section {
   display: flex;
@@ -91,6 +77,10 @@ h2 {
   font-size: 4rem;
   font-weight: bold;
   margin: 0;
+
+  @media screen and (max-width: 767px) {
+    font-size: 2rem;
+  }
 }
 
 a {
@@ -117,6 +107,7 @@ ul {
   :root {
     --layout-margin: 20px;
     --layout-gutter: 20px;
+    --layout-gutter-neg: -20px;
     --layout-col-width: calc(100vw - var(--layout-margin) * 2);
   }
 }

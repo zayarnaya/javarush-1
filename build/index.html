@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Find Your Alpine Ride" />
-    <link href="favicon.ico" />
+    <link rel="icon" href="_favicon.ico" />
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="assets/scripts/hamburger.js"></script>
     <script src="assets/scripts/tips.js"></script>
@@ -14,6 +14,7 @@
     <script src="script.js"></script>
   </head>
   <body>
+    <!-- Header -->
     <header class="header">
       <div class="container">
         <div class="header__wrapper">
@@ -47,11 +48,17 @@
         </div>
       </div>
     </header>
+    <!-- End header -->
+
+    <!-- Main -->
     <main>
+      <!-- Background for 3 first sections -->
       <div class="bg">
+        <!-- Hero section -->
         <section>
           <div class="container">
             <div class="hero">
+              <!-- Form -->
               <div class="tickets">
                 <h1>Skip The Climbing, Catch The Bus</h1>
                 <form class="tickets__form js-tickets-form" action="bus-list.html" novalidate>
@@ -59,6 +66,7 @@
                     We sell tickets to the best seats in the house – houses on wheels, that is! <br />Get ready for
                     jaw-dropping views without breaking a sweat.
                   </legend>
+                  <!-- Trip settings -->
                   <fieldset class="tickets__trip-settings js-radio-group">
                     <label class="settings__label" for="round"
                       ><input type="radio" id="round" name="trip-type" value="round" checked />Round trip</label
@@ -76,6 +84,8 @@
                       </button>
                     </div>
                   </fieldset>
+                  <!-- End trip settings -->
+                  <!-- Inputs -->
                   <fieldset class="tickets__text-inputs js-inputs">
                     <label class="tickets__label"
                       ><p>Departure</p>
@@ -115,8 +125,7 @@
                         value="" />
                       <div class="error-message js-error-message"></div
                     ></label>
-                    <label class="tickets__label"
-                      ><p></p>
+                    <label class="tickets__label">
                       <input
                         class="js-date js-return-date"
                         type="date"
@@ -128,6 +137,8 @@
                       <div class="error-message js-error-message"></div
                     ></label>
                   </fieldset>
+                  <!-- End inputs -->
+                  <!-- Form calendar -->
                   <div class="calendar__placeholder">
                     <div class="calendar js-calendar hidden">
                       <div class="calendar__wrapper js-calendar-form">
@@ -158,40 +169,6 @@
                                 </div>
                               </div>
                             </fieldset>
-                            <fieldset class="calendar__field js-calendar-field">
-                              <legend class="js-legend">December</legend>
-                              <div class="calendar__grid js-calendar-grid">
-                                <div class="calendar__row calendar__weekdays">
-                                  <span class="calendar__weekday">M</span>
-                                  <span class="calendar__weekday">T</span>
-                                  <span class="calendar__weekday">W</span>
-                                  <span class="calendar__weekday">T</span>
-                                  <span class="calendar__weekday">F</span>
-                                  <span class="calendar__weekday">S</span>
-                                  <span class="calendar__weekday">S</span>
-                                </div>
-                                <div class="calendar__row calendar__week">
-                                  <button type="button" class="calendar__day">1</button>
-                                </div>
-                              </div>
-                            </fieldset>
-                            <fieldset class="calendar__field">
-                              <legend class="js-legend">December</legend>
-                              <div class="calendar__grid">
-                                <div class="calendar__row calendar__weekdays">
-                                  <span class="calendar__weekday">M</span>
-                                  <span class="calendar__weekday">T</span>
-                                  <span class="calendar__weekday">W</span>
-                                  <span class="calendar__weekday">T</span>
-                                  <span class="calendar__weekday">F</span>
-                                  <span class="calendar__weekday">S</span>
-                                  <span class="calendar__weekday">S</span>
-                                </div>
-                                <div class="calendar__row calendar__week">
-                                  <button type="button" class="calendar__day">1</button>
-                                </div>
-                              </div>
-                            </fieldset>
                           </div>
                         </div>
                         <div class="calendar__footer">
@@ -203,15 +180,18 @@
                       </div>
                     </div>
                   </div>
-
+                  <!-- End form calendar -->
                   <button type="submit" class="hero__submit btn-blue">Find My Alpine Ride</button>
                 </form>
               </div>
-
+              <!-- End form -->
               <img src="assets/images/photoes/fullsize/Hero.png" alt="Wonders" class="hero__image" />
             </div>
           </div>
         </section>
+        <!-- End hero section -->
+
+        <!-- Statistics section -->
         <section class="section-stats">
           <div class="container">
             <ul class="stats__list">
@@ -234,21 +214,39 @@
             </ul>
           </div>
         </section>
+        <!-- End statistics section -->
+
+        <!-- Glimpses of glory section -->
         <section class="glory">
           <div class="container">
             <h2>Glimpses of Glory</h2>
             <div class="glory__gallery">
               <div class="glory__image image-first">
-                <img height="100%" src="assets/images/photoes/fullsize/ing01.png" alt="" />
+                <img
+                  height="100%"
+                  src="assets/images/photoes/fullsize/ing01.png"
+                  srcset="assets/images/photoes/mobile/ing01-mobile.png 767w, assets/images/photoes/fullsize/ing01.png"
+                  alt=""
+                />
               </div>
               <div class="glory__image image-second">
-                <img height="100%" src="assets/images/photoes/fullsize/ing02.png" alt="" />
+                <img
+                  height="100%"
+                  src="assets/images/photoes/fullsize/ing02.png"
+                  srcset="assets/images/photoes/mobile/ing02-mobile.png 767w, assets/images/photoes/fullsize/ing02.png"
+                  alt=""
+                />
               </div>
               <div class="glory__image image-third">
                 <img height="100%" src="assets/images/photoes/fullsize/ing03.png" alt="" />
               </div>
               <div class="glory__image image-forth">
-                <img width="100%" src="assets/images/photoes/fullsize/ing04.png" alt="" />
+                <img
+                  width="100%"
+                  src="assets/images/photoes/fullsize/ing04.png"
+                  srcset="assets/images/photoes/mobile/ing04-mobile.png 767w, assets/images/photoes/fullsize/ing04.png"
+                  alt=""
+                />
               </div>
               <div class="glory__image image-fifth">
                 <img width="100%" src="assets/images/photoes/fullsize/ing05.png" alt="" />
@@ -256,10 +254,14 @@
             </div>
           </div>
         </section>
+        <!-- End glimpses of glory section -->
       </div>
+      <!-- End background -->
+
+      <!-- App download section -->
       <section class="app" id="app">
         <div class="container">
-          <h2>Free downloads app now!</h2>
+          <h2>Free&nbsp;downloads app&nbsp;now!</h2>
           <div class="app__badges">
             <a class="app__link" href="/"
               ><img class="app__badge" src="assets/images/badges/google-play.svg" alt="download from google play"
@@ -273,6 +275,9 @@
           </div>
         </div>
       </section>
+      <!-- End app download section -->
+
+      <!-- FAQ section -->
       <section class="faq" id="faq">
         <div class="container">
           <h2>FAQs.</h2>
@@ -356,6 +361,9 @@
           </div>
         </div>
       </section>
+      <!-- End FAQ section -->
+
+      <!-- Contacts section -->
       <section class="contacts" id="contact">
         <div class="contacts__empty"></div>
         <div class="contacts__colored">
@@ -374,7 +382,11 @@
           </div>
         </div>
       </section>
+      <!-- End contacts section -->
     </main>
+    <!-- End main -->
+
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <div class="footer__info">
@@ -450,5 +462,6 @@
         </div>
       </div>
     </footer>
+    <!-- End footer -->
   </body>
 </html>

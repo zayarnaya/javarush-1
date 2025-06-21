@@ -36,6 +36,13 @@
       width: 462px;
       min-width: unset;
     }
+
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+      width: auto;
+      min-width: unset;
+      gap: 30px;
+    }
   }
 
   &__badge {
@@ -46,6 +53,10 @@
     @media screen and (max-width: 1199px) {
       width: 100%;
       margin-bottom: 30px;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: unset;
     }
   }
 }

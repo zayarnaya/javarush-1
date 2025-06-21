@@ -113,10 +113,13 @@ input[type='date'] {
   color: var(--primary-black);
   font-size: 14px;
   font-weight: 500;
-  /*medium*/
   line-height: 150%;
   width: 100%;
   position: relative;
+
+  &:focus {
+    outline: 1px solid var(--primary-blue);
+  }
 }
 
 input[type='text']::placeholder {
@@ -147,7 +150,11 @@ input[type='date']::after {
   pointer-events: none;
 }
 
-input[type='date']:required:valid:after,
+input[type='date']:required:valid:not(:focus)::after {
+  content: attr(data-appearance);
+  color: var(--primary-black);
+}
+
 input[type='date']:focus:after {
   content: none;
 }
@@ -160,13 +167,12 @@ input[type='date']::before {
   pointer-events: all;
 }
 
-input[type='date']:required:not(:focus) {
+input[type='date']:required:not(:focus),
+input[type='date']:required:not(:valid),
+input[type='date']:required:valid {
   color: transparent;
 }
-input[type='date']:required:not(:valid) {
-  color: transparent;
-}
-input[type='date']:required:valid,
+
 input[type='date']:required:focus {
   color: var(--primary-black);
 }
@@ -179,10 +185,14 @@ input[type='date']:required:focus {
   font-size: 12px;
   font-weight: 400;
   opacity: 0;
+
+  @media screen and (max-width: 767px) {
+    height: 22px;
+  }
 }
 
 input.invalid:not(:disabled) {
-  border: 1px solid red;
+  outline: 1px solid red;
 
   & ~ .error-message {
     opacity: 1;

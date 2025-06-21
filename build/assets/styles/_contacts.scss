@@ -24,6 +24,14 @@
       width: unset;
       min-width: 464px;
     }
+
+    @media screen and (max-width: 767px) {
+      min-width: 320px;
+
+      h2 {
+        font-size: 36px;
+      }
+    }
   }
 
   &__links {
@@ -33,11 +41,19 @@
   &__link {
     font-size: 28px;
     line-height: 140%;
+
+    @media screen and (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 
   &__address {
     font-size: 18px;
     line-height: 150%;
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 }
 
