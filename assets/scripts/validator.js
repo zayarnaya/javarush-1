@@ -18,6 +18,7 @@ class Validator {
    */
 
   validateForm() {
+    let station = '';
     this._inputs.forEach((input) => {
       if (!input.disabled) {
         const messageField = input.closest('label')?.querySelector('.js-error-message');
@@ -26,7 +27,13 @@ class Validator {
             if (!input.value) {
               this._invalidateInput(input, messageField, 'Please select station');
             } else {
-              this._revalidateInput(input, messageField);
+              if (!station) {
+                station = input.value;
+              } else if (station === input.value) {
+                this._invalidateInput(input, messageField, 'Departure and arrival stations should differ');
+              } else {
+                this._revalidateInput(input, messageField);
+              }
             }
             break;
           case 'date':
