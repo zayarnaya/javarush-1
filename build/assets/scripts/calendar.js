@@ -392,8 +392,6 @@ class Calendar {
    */
 
   highlight() {
-    // const rowFrom = document.querySelector(`[data-date=${this.departureDate}]`).closest('.calendar__week');
-    // const rowTo = document.querySelector(`[data-date=${this.returnDate}]`).closest('.calendar__week');
     const highlightColor = 'var(--highlight)';
     const allWeeks = Array.from(document.querySelectorAll('.calendar__week'));
     for (let week of allWeeks) {

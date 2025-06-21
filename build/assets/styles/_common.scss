@@ -26,9 +26,6 @@
   --layout-col-width: calc((var(--layout-window) + var(--layout-margin-neg) * 2 + var(--layout-gutter-neg) * 11) / 12);
 }
 
-/*TODO: ввести обертку контейнер,
-посмотреть и привести в соответствие на больших разрешениях */
-
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -37,10 +34,6 @@
   padding: 0;
   transition: 0.3s;
 }
-
-// * {
-//   outline: solid red;
-// }
 
 body {
   width: 100vw;
@@ -56,14 +49,6 @@ body {
   padding: 0;
   background: linear-gradient(var(--gradient-white), var(--gradient-blue), var(--gradient-white));
 }
-
-// main,
-// section {
-//   width: 100%;
-//   max-width: 1440px;
-//   padding: 0;
-//   margin: 0 auto;
-// }
 
 section {
   display: flex;

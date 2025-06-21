@@ -11,8 +11,14 @@ class Validator {
     this._inputs = Array.from(this._form.elements);
     this.validateForm = this.validateForm.bind(this);
   }
+  /**
+   * Публичный метод, доступен из инстанса
+   * Проверяет форму на предмет заполнены ли станции отбытия и прибытия,
+   * заполнена ли дата
+   */
 
   validateForm() {
+    let station = '';
     this._inputs.forEach((input) => {
       if (!input.disabled) {
         const messageField = input.closest('label')?.querySelector('.js-error-message');
@@ -21,7 +27,13 @@ class Validator {
             if (!input.value) {
               this._invalidateInput(input, messageField, 'Please select station');
             } else {
-              this._revalidateInput(input, messageField);
+              if (!station) {
+                station = input.value;
+              } else if (station === input.value) {
+                this._invalidateInput(input, messageField, 'Departure and arrival stations should differ');
+              } else {
+                this._revalidateInput(input, messageField);
+              }
             }
             break;
           case 'date':
@@ -54,10 +66,23 @@ class Validator {
     }
   }
 
+  /**
+   * Инвалидирует инпут (ставит класс 'invalid')
+   * @param {Element} input - элемент проверяемого инпута
+   * @param {Element} messageField  - элемент подсказки проверяемого инпута
+   * @param {string} message - сообщение для вывода
+   */
+
   _invalidateInput(input, messageField, message) {
     if (!input.classList.contains('invalid')) input.classList.add('invalid');
     if (messageField) messageField.textContent = message;
   }
+
+  /**
+   * Снимает класс 'invalid' с инпута
+   * @param {Element} input - элемент проверяемого инпута
+   * @param {Element} messageField - элемент подсказки проверяемого инпута
+   */
 
   _revalidateInput(input, messageField) {
     input.classList.remove('invalid');

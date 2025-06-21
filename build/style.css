@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: 'Poppins';
   src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
@@ -64,8 +63,6 @@
   --layout-col-width: calc((var(--layout-window) + var(--layout-margin-neg) * 2 + var(--layout-gutter-neg) * 11) / 12);
 }
 
-/*TODO: ввести обертку контейнер,
-посмотреть и привести в соответствие на больших разрешениях */
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
