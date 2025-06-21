@@ -1,0 +1,51 @@
+.faq {
+  .container {
+    padding: calc(2 * var(--layout-margin)) 177px 0 177px;
+    gap: 40px;
+
+    @media screen and (max-width: 1199px) {
+      padding: calc(2 * var(--layout-margin)) var(--layout-margin);
+    }
+  }
+}
+
+.faq-accordion {
+  position: relative;
+
+  &__summary {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 120%;
+    padding: 16px 0;
+  }
+
+  &__toggler {
+    position: absolute;
+    right: 0;
+  }
+
+  &__text {
+    padding: 16px 0;
+    font-size: 16px;
+    line-height: 140%;
+  }
+}
+
+.faq-accordion details[open] .faq-accordion__toggler {
+  transform: rotate(45deg);
+}
+
+.faq-accordion details::details-content {
+  opacity: 0;
+  max-height: 0;
+  transition:
+    opacity 600ms,
+    content-visibility 600ms allow-discrete,
+    max-height 600ms;
+}
+
+details[open]::details-content {
+  opacity: 1;
+  max-height: 1000px;
+}

@@ -1,0 +1,122 @@
+.hero {
+  display: grid;
+  gap: var(--layout-gutter);
+  grid-template-columns: 1fr 1fr;
+  padding: var(--layout-margin) 0 182px 0;
+  position: relative;
+
+  @media screen and (max-width: 1199px) {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    padding-bottom: 128px;
+  }
+
+  &__image {
+    position: absolute;
+    right: 0;
+    max-width: calc(50% + var(--layout-gutter-neg));
+    transform: scaleX(-1);
+    margin-top: -77px;
+    margin-left: 35px;
+    width: 89%;
+
+    @media screen and (max-width: 1199px) {
+      display: none;
+    }
+  }
+}
+
+.tickets,
+.tickets__form {
+  display: flex;
+  flex-direction: column;
+}
+.tickets {
+  h1,
+  legend {
+    margin-bottom: var(--layout-gutter);
+  }
+
+  &__trip-settings {
+    padding: 0 24px 0 40px;
+  }
+
+  &__trip-settings {
+    display: flex;
+    height: 34px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding-top: 3px;
+    margin-bottom: 1.5rem;
+
+    @media screen and (max-width: 767px) {
+      flex-wrap: wrap;
+      gap: 20px;
+      height: unset;
+    }
+  }
+
+  &__text-inputs {
+    display: grid;
+    column-gap: var(--layout-gutter);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+
+    @media screen and (max-width: 767px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: unset;
+      gap: 0;
+      height: unset;
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    line-height: 120%;
+    font-size: 16px;
+    font-weight: 600;
+
+    p {
+      padding-bottom: 16px;
+    }
+  }
+}
+
+.settings__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  font-size: 14px;
+  line-height: 24px;
+
+  @media screen and (max-width: 767px) {
+    width: 40%;
+  }
+}
+
+.number__controls {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  @media screen and (max-width: 767px) {
+    padding: 7px 0;
+  }
+
+  &:before {
+    content: url('./assets/images/person.svg');
+    position: absolute;
+    top: -4px;
+    left: -22px;
+
+    @media screen and (max-width: 767px) {
+      top: 1px;
+    }
+  }
+}
