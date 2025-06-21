@@ -393,6 +393,7 @@ ul {
 .faq-accordion__toggler {
   position: absolute;
   right: 0;
+  cursor: pointer;
 }
 .faq-accordion__text {
   padding: 16px 0;
