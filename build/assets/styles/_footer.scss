@@ -1,8 +1,16 @@
 .footer {
   background-color: var(--primary-blue);
   --primary-black: var(--white);
-  padding: var(--layout-margin) 0 164px 0;
+  padding: var(--layout-margin) 0 76px 0;
   margin-top: -1px;
+
+  @media screen and (max-width: 1199px) {
+    padding-bottom: 59px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 64px;
+  }
 
   .container {
     display: flex;
@@ -59,7 +67,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 300%;
-    letter-spacing: -2%;
+    letter-spacing: -0.2px;
     font-family: 'Plus Jakarta Sans', sans-serif;
 
     &:hover {

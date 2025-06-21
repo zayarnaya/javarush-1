@@ -53,7 +53,7 @@
 
     @media screen and (max-width: 767px) {
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 20px;
       height: unset;
     }
   }
@@ -69,7 +69,7 @@
     @media screen and (max-width: 767px) {
       grid-template-columns: 1fr;
       grid-template-rows: unset;
-      gap: 10px;
+      gap: 0;
       height: unset;
     }
   }
@@ -105,10 +105,18 @@
   align-items: center;
   position: relative;
 
+  @media screen and (max-width: 767px) {
+    padding: 7px 0;
+  }
+
   &:before {
     content: url('./assets/images/person.svg');
     position: absolute;
     top: -4px;
     left: -22px;
+
+    @media screen and (max-width: 767px) {
+      top: 1px;
+    }
   }
 }

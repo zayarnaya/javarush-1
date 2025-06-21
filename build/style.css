@@ -155,8 +155,18 @@ ul {
 .footer {
   background-color: var(--primary-blue);
   --primary-black: var(--white);
-  padding: var(--layout-margin) 0 164px 0;
+  padding: var(--layout-margin) 0 76px 0;
   margin-top: -1px;
+}
+@media screen and (max-width: 1199px) {
+  .footer {
+    padding-bottom: 59px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .footer {
+    padding-bottom: 64px;
+  }
 }
 .footer .container {
   display: flex;
@@ -208,7 +218,7 @@ ul {
   font-weight: 500;
   font-size: 16px;
   line-height: 300%;
-  letter-spacing: -2%;
+  letter-spacing: -0.2px;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .footer__link:hover {
@@ -595,6 +605,11 @@ input[type='date']:required:focus {
   font-size: 12px;
   font-weight: 400;
   opacity: 0;
+}
+@media screen and (max-width: 767px) {
+  .error-message {
+    height: 22px;
+  }
 }
 
 input.invalid:not(:disabled) {
@@ -1196,7 +1211,7 @@ input.invalid:not(:disabled) ~ .error-message {
 @media screen and (max-width: 767px) {
   .tickets__trip-settings {
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     height: unset;
   }
 }
@@ -1213,7 +1228,7 @@ input.invalid:not(:disabled) ~ .error-message {
   .tickets__text-inputs {
     grid-template-columns: 1fr;
     grid-template-rows: unset;
-    gap: 10px;
+    gap: 0;
     height: unset;
   }
 }
@@ -1247,11 +1262,21 @@ input.invalid:not(:disabled) ~ .error-message {
   align-items: center;
   position: relative;
 }
+@media screen and (max-width: 767px) {
+  .number__controls {
+    padding: 7px 0;
+  }
+}
 .number__controls:before {
   content: url('./assets/images/person.svg');
   position: absolute;
   top: -4px;
   left: -22px;
+}
+@media screen and (max-width: 767px) {
+  .number__controls:before {
+    top: 1px;
+  }
 }
 
 .section-stats {
