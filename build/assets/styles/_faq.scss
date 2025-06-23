@@ -12,6 +12,10 @@
 .faq-accordion {
   position: relative;
 
+  details:not(:last-child) {
+    border-bottom: 1px solid var(--primary-black-50);
+  }
+
   &__summary {
     list-style: none;
     font-size: 18px;
