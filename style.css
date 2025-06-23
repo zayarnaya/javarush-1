@@ -383,6 +383,9 @@ ul {
 .faq-accordion {
   position: relative;
 }
+.faq-accordion details:not(:last-child) {
+  border-bottom: 1px solid var(--primary-black-50);
+}
 .faq-accordion__summary {
   list-style: none;
   font-size: 18px;
